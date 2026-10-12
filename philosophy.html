@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Философия — ARKETIP</title>
+  <meta name="description" content="Философия ARKETIP: честные материалы, северный модернизм и столярное ремесло, рассчитанное на поколения.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500&family=Manrope:wght@300;400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/modern.css">
+</head>
+<body>
+
+  <!-- 1. Шапка -->
+  <header class="header">
+    <div class="container header__inner">
+      <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="burger__line"></span>
+      </button>
+
+      <a href="index.html" class="logo">ARKETIP</a>
+
+      <nav class="nav" aria-label="Основная навигация">
+        <ul class="nav__list">
+          <li><a href="collection.html" class="nav__link">Коллекция</a></li>
+          <li><a href="philosophy.html" class="nav__link nav__link--active" aria-current="page">Философия</a></li>
+          <li><a href="interiors.html" class="nav__link">Интерьеры</a></li>
+          <li><a href="contacts.html" class="nav__link">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <a href="cart.html" class="cart-btn" aria-label="Корзина покупок">
+        <img src="images/icon-bag.svg" width="13.75" height="17.42" alt="">
+        <span class="cart-btn__count" hidden>0</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Мобильное меню -->
+  <div class="mobile-menu" id="mobile-menu">
+    <nav class="mobile-menu__inner" aria-label="Мобильная навигация">
+      <p class="mobile-menu__label">Меню студии</p>
+      <ul class="mobile-menu__list">
+        <li><a href="collection.html" class="mobile-menu__link">Коллекция</a></li>
+        <li><a href="index.html#categories" class="mobile-menu__link">Категории</a></li>
+        <li><a href="interiors.html" class="mobile-menu__link">Интерьеры</a></li>
+        <li><a href="philosophy.html" class="mobile-menu__link mobile-menu__link--active" aria-current="page">Философия</a></li>
+        <li><a href="contacts.html" class="mobile-menu__link">Контакты</a></li>
+      </ul>
+      <div class="mobile-menu__footer">
+        <address>Шоурум в Санкт-Петербурге:<br>Набережная реки Мойки, 102</address>
+        <p><a href="tel:+78129801234">+7 (812) 980-12-34</a> • <a href="mailto:concierge@arketip.ru">concierge@arketip.ru</a></p>
+      </div>
+    </nav>
+  </div>
+
+  <main>
+
+    <!-- 2. Hero -->
+    <section class="ph-hero">
+      <img class="ph-hero__bg" src="images/philosophy/hero-wood.jpg" alt="">
+      <div class="container ph-hero__content">
+        <p class="ph-hero__eyebrow">Мастерская авторской мебели • основана в 2018</p>
+        <h1 class="ph-hero__title">Мы делаем мебель,<br> которая живёт<br> десятилетиями</h1>
+        <span class="ph-hero__divider" aria-hidden="true"></span>
+      </div>
+      <a href="#manifest" class="ph-hero__scroll">
+        Вниз
+        <span class="ph-hero__scroll-line" aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <!-- 3. Манифест -->
+    <section class="manifest" id="manifest">
+      <div class="container">
+        <div class="manifest__inner">
+          <p class="manifest__eyebrow">Манифест</p>
+
+          <div class="manifest__text">
+            <p>
+              Мы верим в молчаливый диалог между человеком и материалом. Каждый спил
+              дерева несёт в себе вековую летопись северных ветров, засух и дождей. Наш
+              долг — не подчинять древесину силой геометрии, а бережно раскрывать её
+              внутреннее достоинство, противопоставляя культуре стремительного
+              одноразового потребления вещи, способные взрослеть и благородно стареть
+              вместе с несколькими поколениями семьи.
+            </p>
+            <p>
+              В основе нашей эстетики лежат принципы чистого северного модернизма. Мы
+              намеренно отказываемся от навязчивого декоративного шума, обнажая
+              конструктивную честность предмета. Форма определяется светом,
+              пропорциями и выверенной тактильной эргономикой. Предмет ARKETIP не
+              кричит о своём присутствии в интерьере, он формирует ощущение
+              защищённости, тишины и фундаментального покоя.
+            </p>
+            <p id="workshop">
+              Истинное ремесло кроется в невидимых деталях: мы конструируем узлы по
+              классическим столярным канонам «шип-паз», сводя к минимуму скрытый
+              металлический крепёж, чтобы дерево могло свободно дышать и сохранять
+              стабильность десятилетиями. Для финишной отделки используются
+              исключительно органические карнаубские воски и льняные масла,
+              сохраняющие природную шелковистость волокна и естественный древесный
+              аромат.
+            </p>
+          </div>
+
+          <div class="manifest__signature">
+            <div>
+              <p class="manifest__studio">ARKETIP Studio</p>
+              <p class="manifest__city">Санкт-Петербург — Выборг</p>
+            </div>
+            <p class="manifest__index">04 / Философия</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Материалы -->
+    <section class="materials" id="materials">
+      <div class="container">
+        <div class="materials__head">
+          <p class="materials__eyebrow">Основа ремесла</p>
+          <h2 class="section-title materials__title">Природные материалы</h2>
+          <p class="materials__text">
+            Честные фактуры, отобранные вручную в лесных хозяйствах и карьерах.
+            Никаких имитаций — только подлинная масса и тепло природы.
+          </p>
+        </div>
+
+        <div class="materials__grid">
+          <article class="material">
+            <div class="material__image">
+              <img src="images/philosophy/oak.png" alt="Текстура горного дуба" loading="lazy">
+            </div>
+            <div class="material__head">
+              <h3 class="material__title">Дуб</h3>
+              <p class="material__tag">01 / Древесина</p>
+            </div>
+            <p class="material__desc">
+              Кавказский горный дуб возрастом от 80 лет с плотной фактурой и
+              высокой устойчивостью к деформациям.
+            </p>
+            <div class="material__specs">
+              <span>Влажность: 8-10%</span>
+              <span>Финиш: твердый воск</span>
+            </div>
+          </article>
+
+          <article class="material">
+            <div class="material__image">
+              <img src="images/philosophy/walnut.png" alt="Текстура американского ореха" loading="lazy">
+            </div>
+            <div class="material__head">
+              <h3 class="material__title">Орех</h3>
+              <p class="material__tag">02 / Древесина</p>
+            </div>
+            <p class="material__desc">
+              Американский темный орех с шелковистым отливом, глубоким
+              рисунком и мягкой контрастной заболонью.
+            </p>
+            <div class="material__specs">
+              <span>Плотность: 660 кг/м³</span>
+              <span>Финиш: льняное масло</span>
+            </div>
+          </article>
+
+          <article class="material">
+            <div class="material__image">
+              <img src="images/philosophy/linen.jpg" alt="Текстура балтийского льна" loading="lazy">
+            </div>
+            <div class="material__head">
+              <h3 class="material__title">Лён</h3>
+              <p class="material__tag">03 / Текстиль</p>
+            </div>
+            <p class="material__desc">
+              Небелёный балтийский лён плотного ручного плетения, тактильный,
+              гипоаллергенный и дышащий.
+            </p>
+            <div class="material__specs">
+              <span>Плотность: 480 г/м²</span>
+              <span>100% органика</span>
+            </div>
+          </article>
+
+          <article class="material">
+            <div class="material__image">
+              <img src="images/philosophy/stone.jpg" alt="Фактура природного камня" loading="lazy">
+            </div>
+            <div class="material__head">
+              <h3 class="material__title">Камень</h3>
+              <p class="material__tag">04 / Минералы</p>
+            </div>
+            <p class="material__desc">
+              Натуральный известняк и онежский кварцит для монолитных
+              столешниц с шелковистой матовой шлифовкой.
+            </p>
+            <div class="material__specs">
+              <span>Обработка: honed matte</span>
+              <span>Происхождение: север</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Переход в коллекцию -->
+    <section class="ph-cta">
+      <div class="container ph-cta__inner">
+        <p class="ph-cta__eyebrow">Прикоснитесь к форме</p>
+        <h2 class="ph-cta__title">Взгляните, как философия оживает в предметах</h2>
+        <a href="collection.html" class="link-arrow ph-cta__link">Перейти в коллекцию <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 6. Подвал -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid footer__grid--even">
+        <div class="footer__brand footer__brand--compact">
+          <a href="index.html" class="logo">ARKETIP</a>
+          <p class="footer__about">
+            Скандинавская авторская мебель из массива благородных пород дерева
+            с пожизненной гарантией на каркас.
+          </p>
+        </div>
+
+        <nav class="footer__nav" aria-label="Навигация в подвале">
+          <div class="footer__col">
+            <h4 class="footer__heading">Магазин</h4>
+            <ul class="footer__list">
+              <li><a href="collection.html">Коллекция</a></li>
+              <li><a href="living.html">Гостиная</a></li>
+              <li><a href="bedroom.html">Спальня</a></li>
+              <li><a href="kitchen.html">Кухня</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__heading">О бренде</h4>
+            <ul class="footer__list">
+              <li><a href="philosophy.html" class="footer__link--active" aria-current="page">Философия</a></li>
+              <li><a href="#materials">Материалы</a></li>
+              <li><a href="#workshop">Мастерская</a></li>
+              <li><a href="contacts.html#showroom">Шоурум</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__heading">Контакты</h4>
+            <ul class="footer__list">
+              <li>Санкт-Петербург, наб. Мойки, 24</li>
+              <li><a href="tel:+78124093218">+7 (812) 409-32-18</a></li>
+              <li><a href="mailto:studio@arketip.ru">studio@arketip.ru</a></li>
+              <li class="footer__socials">
+                <a href="#">Instagram</a>
+                <a href="#">Pinterest</a>
+                <a href="#">Telegram</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2025 ARKETIP Furniture Studio. Все права защищены.</p>
+        <ul class="footer__legal">
+          <li><a href="#">Конфиденциальность</a></li>
+          <li><a href="#">Договор оферты</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/modern.js"></script>
+</body>
+</html>

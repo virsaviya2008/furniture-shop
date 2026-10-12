@@ -1,0 +1,1776 @@
+/* ==========================================================================
+   ARKETIP — современный слой: скругления, объём, анимации
+   Подключается после style.css и переопределяет базовые стили
+   ========================================================================== */
+
+/* ---------- Переменные ---------- */
+:root {
+  --radius-xs: 10px;
+  --radius-sm: 16px;
+  --radius-md: 24px;
+  --radius-lg: 32px;
+  --radius-pill: 999px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition: 0.35s var(--ease-out);
+
+  --shadow-sm: 0 1px 2px rgba(60, 45, 25, 0.06), 0 6px 16px rgba(60, 45, 25, 0.08);
+  --shadow-md: 0 2px 6px rgba(60, 45, 25, 0.06), 0 16px 40px rgba(60, 45, 25, 0.12);
+  --shadow-lg: 0 6px 12px rgba(60, 45, 25, 0.08), 0 30px 70px rgba(60, 45, 25, 0.2);
+  /* Тень при наведении: предмет «отрывается» от поверхности */
+  --shadow-hover: 0 10px 20px rgba(60, 45, 25, 0.1), 0 40px 90px -10px rgba(60, 45, 25, 0.32);
+  --shadow-glow: 0 8px 24px rgba(139, 111, 71, 0.35);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+
+  /* Шрифты: Manrope — современный гротеск для всего, Cormorant — курсив для цитат */
+  --font-heading: "Manrope", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-body: "Manrope", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-accent: "Cormorant Garamond", Georgia, serif;
+
+  --glass-bg: rgba(252, 250, 247, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.65);
+}
+
+/* ---------- Фон: мягкие тёплые пятна для глубины ---------- */
+body {
+  position: relative;
+  background-color: #F1ECE4;
+  animation: page-in 0.7s var(--ease-out) both;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20vmax;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(42vmax 42vmax at 50% 30%, rgba(253, 251, 248, 0.95), transparent 70%),
+    radial-gradient(40vmax 40vmax at 12% 8%, rgba(172, 141, 99, 0.24), transparent 60%),
+    radial-gradient(36vmax 36vmax at 90% 35%, rgba(139, 111, 71, 0.18), transparent 60%),
+    radial-gradient(50vmax 50vmax at 30% 95%, rgba(196, 170, 135, 0.3), transparent 60%),
+    radial-gradient(120vmax 90vmax at 50% 50%, transparent 55%, rgba(90, 70, 45, 0.14));
+  animation: blobs-drift 28s ease-in-out infinite alternate;
+}
+
+@keyframes page-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes blobs-drift {
+  from { transform: translate3d(0, 0, 0) rotate(0deg); }
+  to { transform: translate3d(3vmax, -2vmax, 0) rotate(6deg); }
+}
+
+/* ---------- Типографика ---------- */
+h1, h2, h3 {
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+h4 {
+  font-weight: 600;
+}
+
+.logo {
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+.logo:hover {
+  letter-spacing: 0.2em;
+}
+
+.eyebrow,
+.nav__link,
+.filters__btn,
+.link-arrow {
+  font-weight: 600;
+}
+
+/* Курсивные цитаты — классическая антиква как акцент */
+.quote__text,
+.manifest__studio {
+  font-family: var(--font-accent);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.quote__text {
+  font-size: 38px;
+  line-height: 46px;
+}
+
+::selection {
+  color: var(--color-bg);
+  background-color: var(--color-accent);
+}
+
+/* Секции без жёстких линий — разделяем воздухом */
+.section,
+.hero,
+.categories {
+  border-bottom-color: transparent;
+}
+
+.section-head {
+  border-bottom: 0;
+}
+
+/* ---------- Шапка: плавающая «пилюля» из стекла ---------- */
+.header {
+  top: 12px;
+  left: max(16px, calc(var(--container-padding) - 40px));
+  right: max(16px, calc(var(--container-padding) - 40px));
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-md), var(--shadow-inset);
+  animation: header-drop 0.9s var(--ease-spring) backwards;
+  transition: top 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out),
+    background-color 0.4s var(--ease-out), transform 0.5s var(--ease-out);
+}
+
+.header .container {
+  padding: 0 12px 0 32px;
+}
+
+.header__inner {
+  height: 64px;
+  transition: height 0.4s var(--ease-out);
+}
+
+/* После прокрутки шапка становится компактнее и плотнее */
+.header--scrolled {
+  top: 8px;
+  background-color: rgba(252, 250, 247, 0.86);
+  box-shadow: var(--shadow-lg), var(--shadow-inset);
+}
+
+.header--scrolled .header__inner {
+  height: 56px;
+}
+
+/* При прокрутке вниз шапка уезжает, вверх — возвращается */
+.header--hidden {
+  transform: translateY(calc(-100% - 24px));
+}
+
+@keyframes header-drop {
+  from { opacity: 0; transform: translateY(-30px) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+
+.logo {
+  transition: letter-spacing 0.5s var(--ease-out), color var(--transition);
+}
+
+.logo:hover {
+  color: var(--color-accent);
+}
+
+/* ---------- Навигация: пилюли со скользящим индикатором ---------- */
+.nav__list {
+  position: relative;
+  gap: 4px;
+  padding: 4px;
+  background-color: rgba(239, 238, 234, 0.7);
+  border-radius: var(--radius-pill);
+  box-shadow: inset 0 1px 2px rgba(60, 45, 25, 0.06);
+}
+
+.nav__list li {
+  position: relative;
+  z-index: 1;
+}
+
+.nav__link {
+  padding: 10px 20px;
+  font-size: 12px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  transition: color var(--transition);
+}
+
+.nav__link:hover {
+  color: var(--color-text);
+}
+
+/* Открытая страница — тёмная капсула с тёплым свечением */
+.nav__link--active,
+.nav__link--active:hover {
+  color: var(--color-bg);
+  background-color: var(--color-text);
+  box-shadow: 0 2px 4px rgba(43, 43, 43, 0.2), var(--shadow-glow);
+  animation: active-in 0.7s var(--ease-spring) 0.3s backwards;
+}
+
+.nav__link--active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -9px;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--color-accent-light);
+}
+
+.nav__link {
+  position: relative;
+}
+
+@keyframes active-in {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+.nav__indicator {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  z-index: 0;
+  height: calc(100% - 8px);
+  background-color: #fff;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.5s var(--ease-spring), width 0.5s var(--ease-spring), opacity 0.3s ease;
+}
+
+.nav__indicator--visible {
+  opacity: 1;
+}
+
+/* ---------- Корзина в шапке ---------- */
+.cart-btn {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  color: var(--color-bg);
+  background-color: var(--color-text);
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.4s var(--ease-spring), background-color var(--transition), box-shadow var(--transition);
+}
+
+.cart-btn img {
+  filter: invert(1);
+}
+
+.cart-btn:hover {
+  background-color: var(--color-accent);
+  box-shadow: var(--shadow-md);
+  transform: scale(1.08) rotate(-6deg);
+}
+
+.cart-btn__count {
+  top: -4px;
+  right: -4px;
+  min-width: 20px;
+  padding: 2px 6px;
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
+  color: #fff;
+  background-color: var(--color-accent);
+  border: 2px solid var(--color-bg);
+  animation: badge-pop 0.5s var(--ease-spring);
+}
+
+.cart-btn--bump {
+  animation: cart-bump 0.6s var(--ease-spring);
+}
+
+@keyframes badge-pop {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+@keyframes cart-bump {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.25) rotate(-10deg); }
+  60% { transform: scale(0.95) rotate(4deg); }
+  100% { transform: scale(1); }
+}
+
+/* ---------- Кнопки: пилюли с подъёмом и бликом ---------- */
+.catalog-card__cart,
+.summary__checkout,
+.request-form__submit,
+.custom-order__btn,
+.checkout-submit__btn,
+.product__cart,
+.promo__btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--radius-pill);
+  transition: color var(--transition), background-color var(--transition),
+    transform 0.4s var(--ease-spring), box-shadow var(--transition);
+}
+
+.catalog-card__cart::after,
+.summary__checkout::after,
+.request-form__submit::after,
+.custom-order__btn::after,
+.checkout-submit__btn::after,
+.product__cart::after,
+.promo__btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  z-index: -1;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.7s var(--ease-out);
+  pointer-events: none;
+}
+
+.catalog-card__cart:hover::after,
+.summary__checkout:hover::after,
+.request-form__submit:hover::after,
+.custom-order__btn:hover::after,
+.checkout-submit__btn:hover::after,
+.product__cart:hover::after,
+.promo__btn:hover::after {
+  left: 120%;
+}
+
+.catalog-card__cart:hover,
+.summary__checkout:hover,
+.request-form__submit:hover,
+.custom-order__btn:hover,
+.checkout-submit__btn:hover,
+.product__cart:hover,
+.promo__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.catalog-card__cart:active,
+.summary__checkout:active,
+.request-form__submit:active,
+.custom-order__btn:active,
+.checkout-submit__btn:active,
+.product__cart:active,
+.promo__btn:active {
+  transform: translateY(0) scale(0.97);
+  transition-duration: 0.1s;
+}
+
+.catalog-card__cart:disabled,
+.product__cart:disabled {
+  transform: none;
+  box-shadow: none;
+}
+
+.catalog-card__cart--added {
+  animation: added-pulse 0.6s var(--ease-spring);
+}
+
+@keyframes added-pulse {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Ссылка со стрелкой — контурная пилюля */
+.link-arrow {
+  gap: 10px;
+  padding: 13px 22px;
+  border: 1px solid var(--color-text);
+  border-radius: var(--radius-pill);
+  transition: color var(--transition), background-color var(--transition),
+    border-color var(--transition), transform 0.4s var(--ease-spring), box-shadow var(--transition);
+}
+
+.link-arrow:hover {
+  color: var(--color-bg);
+  background-color: var(--color-text);
+  border-color: var(--color-text);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.link-arrow:hover span {
+  transform: translateX(6px);
+}
+
+/* Мини-кнопка «В корзину» на главной */
+.product-card__cart {
+  padding: 10px 18px;
+  background-color: #fff;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
+  transition: color var(--transition), background-color var(--transition),
+    transform 0.4s var(--ease-spring), box-shadow var(--transition);
+}
+
+.product-card__cart:hover {
+  color: var(--color-bg);
+  background-color: var(--color-text);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.product-card__cart span,
+.catalog-card__cart span {
+  display: inline-block;
+  transition: transform var(--transition);
+}
+
+.product-card__cart:hover span,
+.catalog-card__cart:hover span {
+  transform: translateX(4px);
+}
+
+/* ---------- Фильтры каталога: чипсы ---------- */
+.filters {
+  gap: 10px;
+  border-top: 0;
+}
+
+.filters__btn {
+  padding: 11px 20px;
+  font-size: 12px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  transition: color var(--transition), background-color var(--transition),
+    border-color var(--transition), transform 0.4s var(--ease-spring), box-shadow var(--transition);
+}
+
+.filters__btn:hover {
+  border-color: rgba(43, 43, 43, 0.3);
+  background-color: #fff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.filters__btn--active,
+.filters__btn--active:hover {
+  color: var(--color-bg);
+  background-color: var(--color-text);
+  border-color: var(--color-text);
+  box-shadow: var(--shadow-md);
+}
+
+/* Карточки появляются после смены фильтра */
+.catalog__grid--animate .catalog-card {
+  animation: card-in 0.6s var(--ease-out) backwards;
+  animation-delay: var(--reveal-delay, 0s);
+}
+
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- Изображения и карточки: скругления и объём ---------- */
+.hero__visual,
+.product-card__image,
+.catalog-card__image,
+.category__image,
+.project__image,
+.interior__image,
+.philosophy__visual,
+.material__image,
+.feature__image,
+.cart-item__image,
+.order-item__image {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero__visual,
+.product-card__image,
+.project__image,
+.philosophy__visual {
+  padding: 0;
+  border: 0;
+  box-shadow: var(--shadow-md);
+}
+
+.hero__visual {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.hero__visual img {
+  transform: scale(1.08);
+  animation: hero-zoom 1.6s var(--ease-out) backwards;
+}
+
+@keyframes hero-zoom {
+  from { transform: scale(1.2); filter: blur(6px); }
+  to { transform: scale(1.08); filter: blur(0); }
+}
+
+.cart-item__image,
+.order-item__image {
+  border-radius: var(--radius-sm);
+}
+
+.product-card,
+.catalog-card,
+.project,
+.interior {
+  transition: transform 0.5s var(--ease-out);
+}
+
+.product-card__image,
+.catalog-card__image,
+.project__image,
+.category__image,
+.interior__image {
+  transition: box-shadow 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+}
+
+.product-card:hover .product-card__image,
+.catalog-card:hover .catalog-card__image,
+.project:hover .project__image,
+.category:hover .category__image,
+.interior:hover .interior__image {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-6px);
+}
+
+.product-card:hover .product-card__image img,
+.catalog-card:hover .catalog-card__image img,
+.project:hover .project__image img,
+.category:hover .category__image img,
+.interior:hover .interior__image img {
+  transform: scale(1.07);
+}
+
+.product-card__image img,
+.catalog-card__image img,
+.project__image img,
+.category__image img,
+.interior__image img {
+  transition: transform 1s var(--ease-out);
+}
+
+/* Карточки товаров каталога и цены */
+.catalog-card__head,
+.catalog-card__desc,
+.catalog-card__footer {
+  padding-inline: 4px;
+}
+
+/* Бейджи и подписи на фото — стеклянные пилюли */
+.hero__caption,
+.philosophy__badge,
+.product-card__badge,
+.catalog-card__badge,
+.catalog-card__sku {
+  border-radius: var(--radius-pill);
+  border-color: var(--glass-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-sm);
+}
+
+.hero__caption {
+  left: 20px;
+  bottom: 20px;
+  padding: 12px 20px;
+  background-color: var(--glass-bg);
+  animation: float-y 5s ease-in-out infinite;
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ---------- Категории: объёмные плитки ---------- */
+.categories__list {
+  gap: var(--grid-gap);
+  border: 0;
+}
+
+.category,
+.category:first-child,
+.category:last-child {
+  padding: 16px 16px 24px;
+  background-color: rgba(255, 255, 255, 0.55);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out), background-color var(--transition);
+}
+
+.category + .category {
+  border-left: 1px solid var(--glass-border);
+}
+
+.category__image {
+  border-radius: calc(var(--radius-lg) - 10px);
+}
+
+.category__info {
+  padding: 0 8px;
+}
+
+.category:hover {
+  background-color: #fff;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-8px);
+}
+
+.category:hover .category__image {
+  transform: none;
+  box-shadow: none;
+}
+
+.category__arrow {
+  box-sizing: content-box;
+  padding: 14px 12px;
+  background-color: var(--color-surface-alt);
+  border-radius: 50%;
+  transition: transform 0.4s var(--ease-spring), background-color var(--transition);
+}
+
+.category:hover .category__arrow {
+  background-color: var(--color-accent-light);
+  transform: translateX(4px) rotate(-45deg);
+}
+
+/* Мягкий световой блик следует за курсором */
+.category {
+  position: relative;
+  isolation: isolate;
+}
+
+.category::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(172, 141, 99, 0.16), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.category:hover::before {
+  opacity: 1;
+}
+
+/* ---------- Философия и факты ---------- */
+.philosophy {
+  background-color: transparent;
+}
+
+.philosophy__grid {
+  width: auto;
+  margin-inline: var(--container-padding);
+  padding: 56px;
+  background-color: rgba(245, 243, 239, 0.8);
+  border: 1px solid var(--glass-border);
+  border-radius: 40px;
+  box-shadow: var(--shadow-md);
+}
+
+.philosophy__visual {
+  border-radius: var(--radius-md);
+}
+
+.facts__item {
+  border-radius: var(--radius-md);
+}
+
+/* ---------- Формы ---------- */
+.field__input,
+.checkout-field__input,
+.promo__input {
+  padding-inline: 18px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition), box-shadow var(--transition), background-color var(--transition);
+}
+
+.field__input:focus,
+.checkout-field__input:focus,
+.promo__input:focus {
+  background-color: #fff;
+  border-color: var(--color-accent-light);
+  box-shadow: 0 0 0 4px rgba(172, 141, 99, 0.18);
+}
+
+.choice {
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition), background-color var(--transition),
+    box-shadow var(--transition), transform 0.4s var(--ease-out);
+}
+
+.choice:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.choice:has(input:checked) {
+  box-shadow: var(--shadow-md);
+}
+
+.summary,
+.order-summary,
+.map__card {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.stepper {
+  border-radius: var(--radius-pill);
+}
+
+.stepper__btn {
+  border-radius: 50%;
+  transition: color var(--transition), background-color var(--transition), transform 0.3s var(--ease-spring);
+}
+
+.stepper__btn:not(:disabled):hover {
+  background-color: var(--color-surface-alt);
+  transform: scale(1.1);
+}
+
+.map__zoom-btn {
+  border-radius: 50%;
+}
+
+/* ---------- Лента товаров ---------- */
+.catalog-rail {
+  border-top: 0;
+}
+
+.catalog-rail__arrow {
+  padding: 10px 18px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  transition: color var(--transition), background-color var(--transition),
+    opacity var(--transition), transform 0.4s var(--ease-spring);
+}
+
+.catalog-rail__arrow:hover {
+  color: var(--color-bg);
+  background-color: var(--color-text);
+  transform: translateY(-2px);
+}
+
+.catalog-rail__track::-webkit-scrollbar-thumb {
+  border-radius: var(--radius-pill);
+}
+
+/* ---------- Подвал ---------- */
+.footer {
+  margin: 0 16px 16px;
+  background-color: rgba(239, 238, 234, 0.7);
+  border: 1px solid var(--glass-border);
+  border-radius: 40px;
+}
+
+.footer__list a {
+  display: inline-block;
+  transition: color var(--transition), transform 0.4s var(--ease-out);
+}
+
+.footer__list a:hover {
+  transform: translateX(4px);
+}
+
+/* ---------- Появление при прокрутке ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.reveal--visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Заголовок hero — слова поднимаются по очереди */
+.split-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.08em;
+}
+
+.split-word > span {
+  display: inline-block;
+  animation: word-up 1s var(--ease-out) both;
+  animation-delay: calc(0.25s + var(--i) * 0.08s);
+}
+
+@keyframes word-up {
+  from { transform: translateY(110%); }
+  to { transform: none; }
+}
+
+/* Полоса прогресса прокрутки */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 101;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent-light), var(--color-accent));
+  border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}
+
+/* ---------- Адаптив ---------- */
+@media (max-width: 1024px) {
+  .nav__link {
+    padding: 10px 14px;
+  }
+
+  .philosophy__grid {
+    padding: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+  }
+
+  .header .container {
+    padding: 0 8px 0 12px;
+  }
+
+  .header__inner,
+  .header--scrolled .header__inner {
+    height: 52px;
+  }
+
+  .cart-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .burger {
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background-color: rgba(239, 238, 234, 0.9);
+    border-radius: 50%;
+  }
+
+  .burger__line,
+  .burger::before,
+  .burger::after {
+    left: 11px;
+    border-radius: 2px;
+  }
+
+  .burger::before { top: 14px; }
+  .burger__line { top: 19px; }
+  .burger::after { top: 24px; }
+
+  /* Мобильное меню — плавающая карточка с выпадением */
+  .mobile-menu {
+    top: calc(var(--header-height) + 4px);
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    width: auto;
+    background-color: rgba(252, 250, 247, 0.985);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    transform: translateY(-16px) scale(0.97);
+    transform-origin: top center;
+    transition: transform 0.45s var(--ease-out), opacity 0.3s ease, visibility 0s linear 0.45s;
+  }
+
+  .mobile-menu--open {
+    opacity: 1;
+    transform: none;
+    transition: transform 0.5s var(--ease-spring), opacity 0.3s ease;
+  }
+
+  .mobile-menu__inner {
+    padding: 28px 24px;
+  }
+
+  .mobile-menu__list {
+    gap: 6px;
+  }
+
+  .mobile-menu__link {
+    display: block;
+    padding: 10px 18px;
+    border-radius: var(--radius-sm);
+    transition: color var(--transition), background-color var(--transition);
+  }
+
+  .mobile-menu__link:hover {
+    background-color: #fff;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .mobile-menu__link--active,
+  .mobile-menu__link--active:hover {
+    color: var(--color-bg);
+    background-color: var(--color-text);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .mobile-menu__list li {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.4s ease, transform 0.5s var(--ease-out);
+  }
+
+  .mobile-menu--open .mobile-menu__list li {
+    opacity: 1;
+    transform: none;
+  }
+
+  .mobile-menu--open .mobile-menu__list li:nth-child(1) { transition-delay: 0.08s; }
+  .mobile-menu--open .mobile-menu__list li:nth-child(2) { transition-delay: 0.13s; }
+  .mobile-menu--open .mobile-menu__list li:nth-child(3) { transition-delay: 0.18s; }
+  .mobile-menu--open .mobile-menu__list li:nth-child(4) { transition-delay: 0.23s; }
+  .mobile-menu--open .mobile-menu__list li:nth-child(5) { transition-delay: 0.28s; }
+  .mobile-menu--open .mobile-menu__list li:nth-child(6) { transition-delay: 0.33s; }
+
+  .categories__list {
+    gap: 16px;
+  }
+
+  .category + .category {
+    border-top: 1px solid var(--glass-border);
+  }
+
+  .philosophy__grid {
+    padding: 24px;
+    border-radius: var(--radius-lg);
+  }
+
+  .footer {
+    margin: 0 8px 8px;
+    border-radius: var(--radius-lg);
+  }
+
+  .hero__visual {
+    border-radius: var(--radius-md);
+  }
+}
+
+/* ==========================================================================
+   Глубокие тени при наведении
+   ========================================================================== */
+.product-card:hover .product-card__image,
+.catalog-card:hover .catalog-card__image,
+.project:hover .project__image,
+.interior:hover .interior__image,
+.category:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.feature__image,
+.material__image,
+.interior__image,
+.catalog-card__image,
+.category {
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+}
+
+.feature__image:hover,
+.material__image:hover,
+.hero__visual:hover,
+.philosophy__visual:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-6px);
+}
+
+.hero__visual,
+.philosophy__visual {
+  transition: box-shadow 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+}
+
+/* Карточки товара целиком приподнимаются на «подушке» тени */
+.catalog-card,
+.product-card {
+  position: relative;
+}
+
+.catalog-card::before,
+.product-card::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  z-index: -1;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: calc(var(--radius-md) + 10px);
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.45s var(--ease-out), transform 0.5s var(--ease-out);
+  pointer-events: none;
+}
+
+@media (hover: hover) {
+  .catalog-card:hover::before,
+  .product-card:hover::before {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Место под «подушку» в горизонтальной ленте, чтобы тень не обрезалась */
+.catalog-rail__track {
+  margin: -16px -16px 0;
+  padding: 16px 16px 24px;
+  scroll-padding-inline: 16px;
+}
+
+.catalog-card,
+.product-card {
+  isolation: isolate;
+}
+
+/* Кнопки и ссылки получают тёплое свечение */
+.link-arrow:hover,
+.product-card__cart:hover,
+.catalog-card__cart:hover,
+.summary__checkout:hover,
+.request-form__submit:hover,
+.custom-order__btn:hover,
+.checkout-submit__btn:hover,
+.product__cart:hover,
+.promo__btn:hover,
+.catalog-rail__arrow:hover {
+  box-shadow: 0 6px 14px rgba(43, 43, 43, 0.18), 0 18px 40px -8px rgba(60, 45, 25, 0.35);
+}
+
+.filters__btn:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.filters__btn--active,
+.filters__btn--active:hover {
+  box-shadow: 0 2px 4px rgba(43, 43, 43, 0.2), var(--shadow-glow);
+}
+
+.cart-btn:hover {
+  box-shadow: var(--shadow-glow), var(--shadow-md);
+}
+
+.choice:hover,
+.summary:hover,
+.order-summary:hover,
+.map__card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.summary,
+.order-summary,
+.map__card {
+  transition: box-shadow 0.5s var(--ease-out);
+}
+
+.philosophy__grid {
+  box-shadow: var(--shadow-lg), var(--shadow-inset);
+}
+
+.footer {
+  box-shadow: var(--shadow-md), var(--shadow-inset);
+}
+
+/* ==========================================================================
+   Страница товара: объём и динамика
+   ========================================================================== */
+
+/* Хлебные крошки — стеклянная пилюля */
+.breadcrumbs__list {
+  display: inline-flex;
+  padding: 10px 20px;
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm), var(--shadow-inset);
+}
+
+.product {
+  gap: 64px;
+  padding-bottom: 64px;
+  border-bottom: 0;
+}
+
+/* Фото: рамка обрезает снимок, под ней — цветное свечение из самого фото */
+.product__gallery {
+  overflow: visible;
+  isolation: isolate;
+  background: none;
+  border: 0;
+  animation: gallery-in 1s var(--ease-out) backwards;
+}
+
+.product__gallery::before {
+  content: "";
+  position: absolute;
+  inset: 8% 6% -6%;
+  z-index: -1;
+  background-image: var(--product-image);
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--radius-lg);
+  filter: blur(48px) saturate(1.4);
+  opacity: 0.55;
+  transform: translateY(24px);
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+}
+
+.product__gallery:hover::before {
+  opacity: 0.75;
+  transform: translateY(32px) scale(1.03);
+}
+
+.product__frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--color-surface);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  cursor: zoom-in;
+}
+
+/* Блик по краю рамки — ощущение стекла */
+.product__frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+}
+
+.product__frame img {
+  transform-origin: var(--zoom-x, 50%) var(--zoom-y, 50%);
+  transition: transform 0.6s var(--ease-out);
+}
+
+.product__frame--zoom img {
+  transform: scale(1.6);
+}
+
+@keyframes gallery-in {
+  from { opacity: 0; transform: translateY(30px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Информация — стеклянная карточка */
+.product__info {
+  padding: 44px;
+  background-color: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg), var(--shadow-inset);
+}
+
+.product__info > * {
+  animation: info-in 0.8s var(--ease-out) backwards;
+}
+
+.product__info > :nth-child(1) { animation-delay: 0.15s; }
+.product__info > :nth-child(2) { animation-delay: 0.22s; }
+.product__info > :nth-child(3) { animation-delay: 0.29s; }
+.product__info > :nth-child(4) { animation-delay: 0.36s; }
+.product__info > :nth-child(5) { animation-delay: 0.43s; }
+.product__info > :nth-child(n + 6) { animation-delay: 0.5s; }
+
+@keyframes info-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+
+.product__info .eyebrow {
+  align-self: flex-start;
+  padding: 6px 14px;
+  color: var(--color-accent);
+  background-color: rgba(172, 141, 99, 0.12);
+  border-radius: var(--radius-pill);
+}
+
+.product__title {
+  margin-top: 12px;
+}
+
+.product__price {
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+/* Наличие — чип с пульсирующей точкой */
+.product__stock {
+  align-self: flex-start;
+  padding: 8px 16px 8px 14px;
+  background-color: rgba(111, 139, 90, 0.1);
+  border-radius: var(--radius-pill);
+}
+
+.product__stock-dot {
+  box-shadow: 0 0 0 0 rgba(111, 139, 90, 0.5);
+  animation: stock-pulse 2s ease-out infinite;
+}
+
+.product__stock--out {
+  background-color: rgba(180, 173, 162, 0.18);
+}
+
+.product__stock--out .product__stock-dot {
+  animation: none;
+}
+
+@keyframes stock-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(111, 139, 90, 0.55); }
+  70% { box-shadow: 0 0 0 10px rgba(111, 139, 90, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(111, 139, 90, 0); }
+}
+
+/* Кнопка — крупная тёмная пилюля со свечением */
+.product__cart {
+  padding: 20px;
+  box-shadow: 0 6px 14px rgba(43, 43, 43, 0.2);
+}
+
+.product__cart:not(:disabled):hover,
+.product__cart.catalog-card__cart--added {
+  color: #fff;
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: 0 6px 14px rgba(43, 43, 43, 0.15), 0 18px 40px -6px rgba(139, 111, 71, 0.55);
+}
+
+.product__cart:disabled {
+  box-shadow: none;
+}
+
+.product__notify {
+  padding: 14px 18px;
+  background-color: rgba(239, 238, 234, 0.8);
+  border-radius: var(--radius-sm);
+}
+
+/* Характеристики — плитки */
+.product__specs {
+  display: grid;
+  gap: 8px;
+  margin-top: 36px;
+  border-top: 0;
+}
+
+.product__spec {
+  padding: 14px 18px;
+  background-color: rgba(248, 246, 242, 0.85);
+  border: 1px solid rgba(231, 223, 212, 0.6);
+  border-bottom-color: rgba(231, 223, 212, 0.6);
+  border-radius: var(--radius-sm);
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out), background-color var(--transition);
+}
+
+.product__spec:hover {
+  background-color: #fff;
+  box-shadow: var(--shadow-md);
+  transform: translateX(4px);
+}
+
+/* Похожие товары */
+.product-related {
+  padding-top: 96px;
+}
+
+@media (max-width: 1024px) {
+  .product__info {
+    padding: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .product__info {
+    padding: 24px 20px;
+  }
+
+  .product__frame {
+    border-radius: var(--radius-md);
+  }
+
+  .product__frame--zoom img {
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   Страница «Контакты»: объём и динамика
+   ========================================================================== */
+.contacts__intro {
+  border-bottom: 0;
+}
+
+.contacts__lead {
+  padding: 24px 28px;
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md), var(--shadow-inset);
+}
+
+.contacts__split {
+  gap: 40px;
+  align-items: start;
+}
+
+/* Форма — стеклянная карточка */
+.contacts__form-col {
+  padding: 48px;
+  background-color: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 40px;
+  box-shadow: var(--shadow-lg), var(--shadow-inset);
+}
+
+.request-form {
+  gap: 24px;
+}
+
+.field__label {
+  padding-left: 4px;
+  font-weight: 600;
+  transition: color var(--transition);
+}
+
+.field:focus-within .field__label {
+  color: var(--color-accent);
+}
+
+.field__input {
+  padding-block: 15px;
+  box-shadow: inset 0 1px 3px rgba(60, 45, 25, 0.06);
+}
+
+.field__input:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 4px rgba(172, 141, 99, 0.18), var(--shadow-sm);
+}
+
+.field__input--invalid {
+  border-color: #B4533C;
+  animation: field-shake 0.4s ease;
+}
+
+@keyframes field-shake {
+  0%, 100% { transform: none; }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+.checkbox__input {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  transition: background-color var(--transition), border-color var(--transition), transform 0.3s var(--ease-spring);
+}
+
+.checkbox__input:checked {
+  transform: scale(1.1);
+}
+
+.checkbox:hover .checkbox__input {
+  border-color: var(--color-accent-light);
+}
+
+.request-form__submit {
+  color: var(--color-bg);
+  background-color: var(--color-text);
+  box-shadow: 0 6px 14px rgba(43, 43, 43, 0.2);
+}
+
+.request-form__submit:hover {
+  color: #fff;
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: 0 6px 14px rgba(43, 43, 43, 0.15), 0 18px 40px -6px rgba(139, 111, 71, 0.55);
+}
+
+.request-form__submit span {
+  display: inline-block;
+  transition: transform var(--transition);
+}
+
+.request-form__submit:hover span {
+  transform: translateX(6px);
+}
+
+.contacts__consent {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top-color: rgba(231, 223, 212, 0.6);
+}
+
+/* Контакты — отдельные плитки */
+.contacts__info {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.contacts__info-list {
+  gap: 16px;
+}
+
+.contacts__block,
+.contacts__block + .contacts__block {
+  padding: 28px 32px;
+  background-color: rgba(255, 255, 255, 0.55);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md), var(--shadow-inset);
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out), background-color var(--transition);
+}
+
+.contacts__block:hover {
+  background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+}
+
+/* Телефон и почта — две плитки-кнопки внутри блока */
+.contacts__block.contacts__block--direct,
+.contacts__block.contacts__block--direct:hover {
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  transform: none;
+}
+
+.contacts__block--direct {
+  gap: 16px;
+}
+
+.contacts__block--direct > div {
+  padding: 24px 28px;
+  background-color: rgba(255, 255, 255, 0.55);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md), var(--shadow-inset);
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out), background-color var(--transition);
+}
+
+.contacts__block--direct > div:hover {
+  background-color: #fff;
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+}
+
+.contacts__direct {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Соцсети — чипсы */
+.contacts__socials {
+  gap: 10px;
+}
+
+.contacts__socials a {
+  gap: 8px;
+  padding: 10px 18px;
+  font-size: 12px;
+  font-weight: 600;
+  background-color: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
+  transition: color var(--transition), background-color var(--transition),
+    transform 0.4s var(--ease-spring), box-shadow var(--transition);
+}
+
+.contacts__socials a span {
+  display: inline-block;
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.contacts__socials a:hover {
+  color: var(--color-bg);
+  background-color: var(--color-text);
+  border-color: var(--color-text);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.contacts__socials a:hover span {
+  transform: translate(2px, -2px) scale(1.2);
+}
+
+/* Программа для архитекторов — тёмная акцентная карточка */
+.program {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding: 36px;
+  color: var(--color-bg);
+  background-color: var(--color-text);
+  border: 0;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 20px rgba(43, 43, 43, 0.15), 0 30px 70px -10px rgba(43, 43, 43, 0.45);
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
+}
+
+.program::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  z-index: -1;
+  width: 70%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, rgba(172, 141, 99, 0.55), transparent 65%);
+  animation: glow-drift 8s ease-in-out infinite alternate;
+}
+
+@keyframes glow-drift {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-30%, 25%); }
+}
+
+.program:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(43, 43, 43, 0.18), 0 40px 90px -10px rgba(43, 43, 43, 0.5);
+}
+
+.program .eyebrow {
+  color: var(--color-accent-light);
+}
+
+.program .contacts__muted {
+  color: rgba(248, 246, 242, 0.7);
+}
+
+.program__head img {
+  box-sizing: content-box;
+  padding: 12px 14px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  filter: invert(1);
+}
+
+.program__link {
+  display: inline-flex;
+  padding: 14px 22px;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  border-radius: var(--radius-pill);
+  transition: color var(--transition), background-color var(--transition), transform 0.4s var(--ease-spring);
+}
+
+.program__link:hover {
+  color: #fff;
+  background-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.contacts__note::before {
+  background-color: var(--color-accent);
+  animation: pulse-accent 2s ease-out infinite;
+}
+
+@keyframes pulse-accent {
+  0% { box-shadow: 0 0 0 0 rgba(139, 111, 71, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(139, 111, 71, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(139, 111, 71, 0); }
+}
+
+/* Карта — скруглённая витрина с отступами */
+.location {
+  padding-bottom: 96px;
+  border-top: 0;
+}
+
+.map {
+  margin-inline: var(--container-padding);
+  border: 1px solid var(--glass-border);
+  border-radius: 40px;
+  box-shadow: var(--shadow-lg), inset 0 0 60px rgba(60, 45, 25, 0.08);
+}
+
+.map__area {
+  left: 24px;
+  border-radius: var(--radius-pill);
+  border-color: var(--glass-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-sm);
+}
+
+.map__zoom {
+  right: 24px;
+}
+
+.map__zoom-btn {
+  width: 44px;
+  height: 44px;
+  background-color: var(--glass-bg);
+  border-color: var(--glass-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.4s var(--ease-spring), box-shadow var(--transition), background-color var(--transition);
+}
+
+.map__zoom-btn:hover {
+  background-color: #fff;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px) scale(1.06);
+}
+
+.map__marker {
+  background-color: var(--color-accent);
+  box-shadow: 0 8px 20px rgba(139, 111, 71, 0.5);
+}
+
+.map__marker::before {
+  background-color: var(--color-accent);
+}
+
+.map__card {
+  padding: 18px 22px;
+  background-color: rgba(252, 250, 247, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-color: var(--glass-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+}
+
+.map__card-title {
+  font-weight: 600;
+}
+
+.map__card-address {
+  border-bottom: 0;
+}
+
+.map__card-link {
+  margin-top: 8px;
+  padding: 10px 18px;
+  color: var(--color-bg);
+  background-color: var(--color-text);
+  border-radius: var(--radius-pill);
+  transition: background-color var(--transition), transform 0.4s var(--ease-spring), box-shadow var(--transition);
+}
+
+.map__card-link:hover {
+  color: #fff;
+  background-color: var(--color-accent);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+/* Метка «падает» на карту, карточка адреса появляется следом и парит */
+.map--visible .map__marker {
+  animation: pin-drop 0.9s var(--ease-spring) backwards;
+}
+
+.map--visible .map__card {
+  animation: card-pop 0.8s var(--ease-spring) 0.4s backwards, float-y 5s ease-in-out 1.2s infinite;
+}
+
+@keyframes pin-drop {
+  from { opacity: 0; transform: translateY(-80px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes card-pop {
+  from { opacity: 0; transform: translateY(16px) scale(0.85); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 1024px) {
+  .contacts__info {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .contacts__form-col {
+    padding: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contacts__form-col {
+    padding: 24px 20px;
+    border-radius: var(--radius-lg);
+  }
+
+  .contacts__block,
+  .contacts__block + .contacts__block,
+  .contacts__block--direct > div {
+    padding: 22px 20px;
+  }
+
+  .program {
+    padding: 28px 22px;
+  }
+
+  .map {
+    border-radius: var(--radius-lg);
+  }
+
+  .location {
+    padding-bottom: 64px;
+  }
+}
+
+/* ---------- Без анимаций для тех, кто их отключил ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

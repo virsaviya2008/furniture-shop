@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кухня и столовая — Коллекция | ARKETIP</title>
+  <meta name="description" content="Мебель ARKETIP для кухни и столовой: обеденные столы из массива дуба и ореха, стулья, барные табуреты и буфеты ручной работы.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/modern.css">
+</head>
+<body>
+
+  <!-- 1. Шапка -->
+  <header class="header">
+    <div class="container header__inner">
+      <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="burger__line"></span>
+      </button>
+
+      <a href="index.html" class="logo">ARKETIP</a>
+
+      <nav class="nav" aria-label="Основная навигация">
+        <ul class="nav__list">
+          <li><a href="collection.html" class="nav__link nav__link--active">Коллекция</a></li>
+          <li><a href="philosophy.html" class="nav__link">Философия</a></li>
+          <li><a href="interiors.html" class="nav__link">Интерьеры</a></li>
+          <li><a href="contacts.html" class="nav__link">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <a href="cart.html" class="cart-btn" aria-label="Корзина покупок">
+        <img src="images/icon-bag.svg" width="13.75" height="17.42" alt="">
+        <span class="cart-btn__count" hidden>0</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Мобильное меню -->
+  <div class="mobile-menu" id="mobile-menu">
+    <nav class="mobile-menu__inner" aria-label="Мобильная навигация">
+      <p class="mobile-menu__label">Меню студии</p>
+      <ul class="mobile-menu__list">
+        <li><a href="collection.html" class="mobile-menu__link mobile-menu__link--active" aria-current="page">Коллекция</a></li>
+        <li><a href="index.html#categories" class="mobile-menu__link">Категории</a></li>
+        <li><a href="interiors.html" class="mobile-menu__link">Интерьеры</a></li>
+        <li><a href="philosophy.html" class="mobile-menu__link">Философия</a></li>
+        <li><a href="contacts.html" class="mobile-menu__link">Контакты</a></li>
+      </ul>
+      <div class="mobile-menu__footer">
+        <address>Шоурум в Санкт-Петербурге:<br>Набережная реки Мойки, 102</address>
+        <p><a href="tel:+78129801234">+7 (812) 980-12-34</a> • <a href="mailto:concierge@arketip.ru">concierge@arketip.ru</a></p>
+      </div>
+    </nav>
+  </div>
+
+  <main class="catalog room">
+    <div class="catalog__inner">
+
+      <!-- 2. Хлебные крошки, заголовок и фильтры -->
+      <section class="room__intro">
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+          <ol class="breadcrumbs__list">
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="collection.html">Коллекция</a></li>
+            <li aria-current="page">Кухня и столовая</li>
+          </ol>
+        </nav>
+
+        <div class="room__head">
+          <h1 class="catalog__title">Кухня и столовая</h1>
+          <p class="room__text">
+            Пространство совместной трапезы, чистоты линий и тёплых встреч. Обеденные столы
+            из цельного массива дуба и ореха, стулья с выверенной эргономикой, островные
+            табуреты и лаконичные буфеты ручной работы.
+          </p>
+        </div>
+
+        <div class="filters filters--compact" role="group" aria-label="Фильтр по типу мебели">
+          <button class="filters__btn filters__btn--active" type="button" data-filter="all" aria-pressed="true">Все предметы (<span data-count>9</span>)</button>
+          <button class="filters__btn" type="button" data-filter="tables" aria-pressed="false">Обеденные столы (<span data-count>2</span>)</button>
+          <button class="filters__btn" type="button" data-filter="chairs" aria-pressed="false">Стулья и полукресла (<span data-count>2</span>)</button>
+          <button class="filters__btn" type="button" data-filter="bar" aria-pressed="false">Барные и островные стулья (<span data-count>2</span>)</button>
+          <button class="filters__btn" type="button" data-filter="storage" aria-pressed="false">Буфеты и хранение (<span data-count>2</span>)</button>
+        </div>
+      </section>
+
+      <!-- 3. Экспозиция сезона -->
+      <section class="feature feature--wide-text" aria-labelledby="feature-title">
+        <div class="feature__image">
+          <img src="images/kitchen/banner.jpg" alt="Обеденная зона загородного дома с мебелью Møbler и Torv" loading="lazy">
+        </div>
+        <div class="feature__content">
+          <div>
+            <p class="feature__eyebrow">Экспозиция сезона</p>
+            <h2 class="feature__title" id="feature-title">Кухня как центр притяжения дома.</h2>
+            <p class="feature__text">
+              Обеденная группа Møbler и барные стулья Torv в проекте загородного дома на Финском
+              заливе. Тёплый тактильный массив дуба с масляным воском, архитектурная тишина
+              и долговечность на поколения вперёд.
+            </p>
+          </div>
+          <a href="interiors.html" class="link-arrow">Исследовать проект <span aria-hidden="true">→</span></a>
+        </div>
+      </section>
+
+      <!-- 4. Каталог -->
+      <section class="catalog__grid" aria-label="Товары для кухни и столовой">
+          <article class="catalog-card catalog-card--framed catalog-card--badged" data-product="mobler" data-category="tables">
+            <div class="catalog-card__image">
+              <img src="images/collection/item-2.jpg" alt="Обеденный стол Møbler" loading="lazy">
+              <span class="catalog-card__badge">Арт. MB-01</span>
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Обеденный стол Møbler</h2>
+              <p class="catalog-card__price">142 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">Массив белёного дуба, длина 220 см</p>
+            <div class="catalog-card__footer">
+              <button class="product-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+              <span class="catalog-card__sku">В наличии</span>
+            </div>
+          </article>
+          <article class="catalog-card catalog-card--framed catalog-card--badged" data-product="klint" data-category="chairs">
+            <div class="catalog-card__image">
+              <img src="images/collection/item-3.jpg" alt="Стул Klint" loading="lazy">
+              <span class="catalog-card__badge">Арт. KL-02</span>
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Стул Klint</h2>
+              <p class="catalog-card__price">34 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">Белёный дуб, настил из натуральной кожи седельного дубления</p>
+            <div class="catalog-card__footer">
+              <button class="product-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+              <span class="catalog-card__sku">В наличии</span>
+            </div>
+          </article>
+          <article class="catalog-card catalog-card--framed catalog-card--badged" data-product="torv" data-category="bar">
+            <div class="catalog-card__image">
+              <img src="images/kitchen/torv.jpg" alt="Барный стул Torv" loading="lazy">
+              <span class="catalog-card__badge">Арт. TV-03</span>
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Барный стул Torv</h2>
+              <p class="catalog-card__price">29 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">Массив ясеня, скрытые шиповые соединения, высота 65 см</p>
+            <div class="catalog-card__footer">
+              <button class="product-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+              <span class="catalog-card__sku">Под заказ 14 дней</span>
+            </div>
+          </article>
+          <article class="catalog-card catalog-card--framed catalog-card--badged" data-product="rund" data-category="tables">
+            <div class="catalog-card__image">
+              <img src="images/kitchen/rund.jpg" alt="Обеденный стол Rund" loading="lazy">
+              <span class="catalog-card__badge">Арт. RD-04</span>
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Обеденный стол Rund</h2>
+              <p class="catalog-card__price">128 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">Круглый стол из цельного массива ореха, диаметр 130 см</p>
+            <div class="catalog-card__footer">
+              <button class="product-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+              <span class="catalog-card__sku">В наличии</span>
+            </div>
+          </article>
+          <article class="catalog-card catalog-card--framed catalog-card--badged" data-product="ask" data-category="chairs">
+            <div class="catalog-card__image">
+              <img src="images/kitchen/ask.jpg" alt="Полукресло Ask" loading="lazy">
+              <span class="catalog-card__badge">Арт. AS-05</span>
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Полукресло Ask</h2>
+              <p class="catalog-card__price">42 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">Округлая спинка из гнутого дуба, сиденье из небелёного льна</p>
+            <div class="catalog-card__footer">
+              <button class="product-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+              <span class="catalog-card__sku">В наличии</span>
+            </div>
+          </article>
+          <article class="catalog-card catalog-card--framed catalog-card--badged" data-product="skaenk" data-category="storage">
+            <div class="catalog-card__image">
+              <img src="images/kitchen/skaenk.jpg" alt="Буфет Skænk" loading="lazy">
+              <span class="catalog-card__badge">Арт. SK-06</span>
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Буфет Skænk</h2>
+              <p class="catalog-card__price">156 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">Массив дуба, рифлёные фасады, латунные петли</p>
+            <div class="catalog-card__footer">
+              <button class="product-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+              <span class="catalog-card__sku">Под заказ 20 дней</span>
+            </div>
+          </article>
+          <article class="catalog-card catalog-card--framed catalog-card--badged" data-product="kupe" data-category="lighting">
+            <div class="catalog-card__image">
+              <img src="images/kitchen/kupe.jpg" alt="Подвесной светильник Kupe" loading="lazy">
+              <span class="catalog-card__badge">Арт. KP-07</span>
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Подвесной светильник Kupe</h2>
+              <p class="catalog-card__price">38 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">Шлифованная матовая латунь, плафон из молочного стекла</p>
+            <div class="catalog-card__footer">
+              <button class="product-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+              <span class="catalog-card__sku">В наличии</span>
+            </div>
+          </article>
+          <article class="catalog-card catalog-card--framed catalog-card--badged" data-product="sadel" data-category="bar">
+            <div class="catalog-card__image">
+              <img src="images/kitchen/sadel.jpg" alt="Табурет Sadel" loading="lazy">
+              <span class="catalog-card__badge">Арт. SD-08</span>
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Табурет Sadel</h2>
+              <p class="catalog-card__price">22 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">Массив ясеня, ручная фрезеровка сиденья</p>
+            <div class="catalog-card__footer">
+              <button class="product-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+              <span class="catalog-card__sku">В наличии</span>
+            </div>
+          </article>
+          <article class="catalog-card catalog-card--framed catalog-card--badged" data-product="rulle" data-category="storage">
+            <div class="catalog-card__image">
+              <img src="images/kitchen/rulle.jpg" alt="Сервировочный столик Rulle" loading="lazy">
+              <span class="catalog-card__badge">Арт. RL-09</span>
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Сервировочный столик Rulle</h2>
+              <p class="catalog-card__price">46 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">Двухуровневый столик на скрытых латунных колёсиках</p>
+            <div class="catalog-card__footer">
+              <button class="product-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+              <span class="catalog-card__sku">В наличии</span>
+            </div>
+          </article>
+      </section>
+
+      <!-- 5. Индивидуальные проекты -->
+      <section class="custom-order custom-order--stacked" aria-labelledby="custom-order-title">
+        <div class="custom-order__content">
+          <p class="feature__eyebrow">Мастерская ARKETIP / Индивидуальные проекты</p>
+          <h2 class="custom-order__title" id="custom-order-title">Столы по вашим размерам и кухонные модули</h2>
+          <p class="custom-order__text">
+            Изготавливаем обеденные столы нестандартной длины до 3,5 метров из цельного массива
+            дуба, ясеня и ореха. Разрабатываем островные зоны и подбираем отделку точно в тон
+            вашего кухонного гарнитура.
+          </p>
+        </div>
+        <a href="contacts.html" class="custom-order__btn">Заказать расчёт проекта <span aria-hidden="true">→</span></a>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- 5. Подвал -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid footer__grid--even">
+        <div class="footer__brand footer__brand--compact">
+          <a href="index.html" class="logo">ARKETIP</a>
+          <p class="footer__about">
+            Скандинавская авторская мебель и свет. Чистые линии, натуральные породы дерева
+            и тактильный текстиль.
+          </p>
+        </div>
+
+        <nav class="footer__nav" aria-label="Навигация в подвале">
+          <div class="footer__col">
+            <h4 class="footer__heading">Магазин</h4>
+            <ul class="footer__list">
+              <li><a href="collection.html">Коллекция</a></li>
+              <li><a href="living.html">Гостиная</a></li>
+              <li><a href="bedroom.html">Спальня</a></li>
+              <li><a href="kitchen.html">Кухня</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__heading">О бренде</h4>
+            <ul class="footer__list">
+              <li><a href="philosophy.html">Философия</a></li>
+              <li><a href="philosophy.html#materials">Материалы</a></li>
+              <li><a href="philosophy.html#workshop">Мастерская</a></li>
+              <li><a href="contacts.html">Контакты</a></li>
+              <li><a href="contacts.html#showroom">Шоурум</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__heading">Соцсети</h4>
+            <ul class="footer__list">
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">Pinterest</a></li>
+              <li><a href="#">Telegram</a></li>
+              <li><a href="mailto:hello@arketip.design">hello@arketip.design</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2025 ARKETIP Furniture Studio. Все права защищены.</p>
+        <ul class="footer__legal">
+          <li><a href="#">Конфиденциальность</a></li>
+          <li><a href="#">Условия сервиса</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/modern.js"></script>
+</body>
+</html>

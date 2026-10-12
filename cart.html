@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Корзина — ARKETIP</title>
+  <meta name="description" content="Корзина ARKETIP: выбранная мебель ручной работы, бережная доставка и фирменная сборка мастером.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/modern.css">
+</head>
+<body>
+
+  <!-- 1. Шапка -->
+  <header class="header">
+    <div class="container header__inner">
+      <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="burger__line"></span>
+      </button>
+
+      <a href="index.html" class="logo">ARKETIP</a>
+
+      <nav class="nav" aria-label="Основная навигация">
+        <ul class="nav__list">
+          <li><a href="collection.html" class="nav__link">Коллекция</a></li>
+          <li><a href="philosophy.html" class="nav__link">Философия</a></li>
+          <li><a href="interiors.html" class="nav__link">Интерьеры</a></li>
+          <li><a href="contacts.html" class="nav__link">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <a href="cart.html" class="cart-btn" aria-label="Корзина покупок" aria-current="page">
+        <img src="images/icon-bag.svg" width="13.75" height="17.42" alt="">
+        <span class="cart-btn__count" hidden>0</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Мобильное меню -->
+  <div class="mobile-menu" id="mobile-menu">
+    <nav class="mobile-menu__inner" aria-label="Мобильная навигация">
+      <p class="mobile-menu__label">Меню студии</p>
+      <ul class="mobile-menu__list">
+        <li><a href="collection.html" class="mobile-menu__link">Коллекция</a></li>
+        <li><a href="index.html#categories" class="mobile-menu__link">Категории</a></li>
+        <li><a href="interiors.html" class="mobile-menu__link">Интерьеры</a></li>
+        <li><a href="philosophy.html" class="mobile-menu__link">Философия</a></li>
+        <li><a href="contacts.html" class="mobile-menu__link">Контакты</a></li>
+      </ul>
+      <div class="mobile-menu__footer">
+        <address>Шоурум в Санкт-Петербурге:<br>Набережная реки Мойки, 102</address>
+        <p><a href="tel:+78129801234">+7 (812) 980-12-34</a> • <a href="mailto:concierge@arketip.ru">concierge@arketip.ru</a></p>
+      </div>
+    </nav>
+  </div>
+
+  <main class="cart">
+    <div class="container">
+
+      <!-- 2. Заголовок -->
+      <div class="cart__head">
+        <h1 class="cart__title">Корзина</h1>
+        <p class="cart__counter" data-cart-counter>0 предметов</p>
+      </div>
+
+      <!-- 3. Товары и сумма заказа -->
+      <div class="cart__layout" data-cart-filled hidden>
+        <section class="cart__list" aria-label="Товары в корзине" data-cart-list></section>
+
+        <aside class="summary" aria-labelledby="summary-title">
+          <h2 class="summary__title" id="summary-title">Сумма заказа</h2>
+
+          <div class="summary__lines">
+            <p class="summary__line">
+              <span>Промежуточный итог</span>
+              <strong data-cart-subtotal>0 ₽</strong>
+            </p>
+            <div class="summary__line">
+              <div>
+                <p>Бережная доставка и подъём</p>
+                <p class="summary__note">Бесплатно при заказе от 100 000 ₽</p>
+              </div>
+              <strong data-cart-delivery>0 ₽</strong>
+            </div>
+            <p class="summary__line">
+              <span>Фирменная сборка мастером</span>
+              <strong>Включена</strong>
+            </p>
+          </div>
+
+          <p class="summary__total">
+            <span>Всего к оплате</span>
+            <strong data-cart-total>0 ₽</strong>
+          </p>
+
+          <a href="checkout.html" class="summary__checkout">Оформить заказ</a>
+
+          <p class="summary__trust">
+            <img src="images/cart/icon-check.svg" width="17.2115" height="18.4422" alt="">
+            Каждый предмет упаковывается в деревянный кофр с паспортом подлинности изделия
+            и индивидуальным номером мастера.
+          </p>
+        </aside>
+      </div>
+
+      <!-- Пустая корзина -->
+      <div class="cart__empty" data-cart-empty hidden>
+        <p class="cart__empty-text">В корзине пока ничего нет. Загляните в коллекцию — каждое изделие создаётся вручную в нашей мастерской.</p>
+        <a href="collection.html" class="link-arrow">Перейти в коллекцию <span aria-hidden="true">→</span></a>
+      </div>
+
+      <!-- 4. Сервис ателье -->
+      <section class="cart__notes" aria-label="Сервис ARKETIP">
+        <div class="cart__note">
+          <h4 class="cart__note-title">Натуральные материалы</h4>
+          <p class="cart__note-text">Сертифицированный дуб и ясень из возобновляемых лесных хозяйств Швеции и Дании.</p>
+        </div>
+        <div class="cart__note">
+          <h4 class="cart__note-title">Индивидуальный сервис</h4>
+          <p class="cart__note-text">Персональный куратор согласует удобное временное окно и особенности заноса крупногабаритных изделий.</p>
+        </div>
+        <div class="cart__note">
+          <h4 class="cart__note-title">Гарантия 10 лет</h4>
+          <p class="cart__note-text">Пожизненный сервис узлов соединений и бесплатная реновация защитного масляного покрытия раз в 3 года.</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- 5. Подвал -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid footer__grid--even">
+        <div class="footer__brand footer__brand--compact">
+          <a href="index.html" class="logo">ARKETIP</a>
+          <p class="footer__about">
+            Скандинавская авторская мебель и свет. Чистые линии, натуральные породы дерева
+            и тактильный текстиль.
+          </p>
+        </div>
+
+        <nav class="footer__nav" aria-label="Навигация в подвале">
+          <div class="footer__col">
+            <h4 class="footer__heading">Магазин</h4>
+            <ul class="footer__list">
+              <li><a href="collection.html">Коллекция</a></li>
+              <li><a href="living.html">Гостиная</a></li>
+              <li><a href="bedroom.html">Спальня</a></li>
+              <li><a href="kitchen.html">Кухня</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__heading">О бренде</h4>
+            <ul class="footer__list">
+              <li><a href="philosophy.html">Философия</a></li>
+              <li><a href="philosophy.html#materials">Материалы</a></li>
+              <li><a href="philosophy.html#workshop">Мастерская</a></li>
+              <li><a href="contacts.html">Контакты</a></li>
+              <li><a href="contacts.html#showroom">Шоурум</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__heading">Соцсети</h4>
+            <ul class="footer__list">
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">Pinterest</a></li>
+              <li><a href="#">Telegram</a></li>
+              <li><a href="mailto:hello@arketip.design">hello@arketip.design</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2025 ARKETIP Furniture Studio. Все права защищены.</p>
+        <ul class="footer__legal">
+          <li><a href="#">Конфиденциальность</a></li>
+          <li><a href="#">Условия сервиса</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/modern.js"></script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Контакты — ARKETIP</title>
+  <meta name="description" content="Свяжитесь с ателье ARKETIP: шоурум и мастерская на набережной реки Мойки, авторская мебель под заказ и программа для архитекторов.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/modern.css">
+</head>
+<body>
+
+  <!-- 1. Шапка -->
+  <header class="header">
+    <div class="container header__inner">
+      <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="burger__line"></span>
+      </button>
+
+      <a href="index.html" class="logo">ARKETIP</a>
+
+      <nav class="nav" aria-label="Основная навигация">
+        <ul class="nav__list">
+          <li><a href="collection.html" class="nav__link">Коллекция</a></li>
+          <li><a href="philosophy.html" class="nav__link">Философия</a></li>
+          <li><a href="interiors.html" class="nav__link">Интерьеры</a></li>
+          <li><a href="contacts.html" class="nav__link nav__link--active" aria-current="page">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <a href="cart.html" class="cart-btn" aria-label="Корзина покупок">
+        <img src="images/icon-bag.svg" width="13.75" height="17.42" alt="">
+        <span class="cart-btn__count" hidden>0</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Мобильное меню -->
+  <div class="mobile-menu" id="mobile-menu">
+    <nav class="mobile-menu__inner" aria-label="Мобильная навигация">
+      <p class="mobile-menu__label">Меню студии</p>
+      <ul class="mobile-menu__list">
+        <li><a href="collection.html" class="mobile-menu__link">Коллекция</a></li>
+        <li><a href="index.html#categories" class="mobile-menu__link">Категории</a></li>
+        <li><a href="interiors.html" class="mobile-menu__link">Интерьеры</a></li>
+        <li><a href="philosophy.html" class="mobile-menu__link">Философия</a></li>
+        <li><a href="contacts.html" class="mobile-menu__link mobile-menu__link--active" aria-current="page">Контакты</a></li>
+      </ul>
+      <div class="mobile-menu__footer">
+        <address>Шоурум в Санкт-Петербурге:<br>Набережная реки Мойки, 102</address>
+        <p><a href="tel:+78129801234">+7 (812) 980-12-34</a> • <a href="mailto:concierge@arketip.ru">concierge@arketip.ru</a></p>
+      </div>
+    </nav>
+  </div>
+
+  <main class="contacts">
+
+    <!-- 2. Вступление -->
+    <section class="contacts__intro">
+      <div class="container contacts__intro-grid">
+        <div>
+          <p class="eyebrow">Связь с ателье</p>
+          <h1 class="contacts__title">Поговорим о вашем проекте</h1>
+        </div>
+        <p class="contacts__lead">
+          Создание авторской скандинавской мебели под заказ, проектирование
+          эксклюзивных предметов и чуткое сотрудничество с дизайнерами
+          интерьеров и архитекторами.
+        </p>
+      </div>
+    </section>
+
+    <!-- 3. Форма и контакты -->
+    <section class="container contacts__split">
+      <div class="contacts__form-col">
+        <div class="contacts__form-head">
+          <h2 class="contacts__subtitle">Оставить запрос</h2>
+          <p class="contacts__muted">
+            Заполните форму, и куратор проектов свяжется с вами в течение рабочего дня
+            для обсуждения эскизов, параметров и сроков.
+          </p>
+        </div>
+
+        <form class="request-form" novalidate>
+          <label class="field">
+            <span class="field__label">Ваше имя *</span>
+            <input class="field__input" type="text" name="name" placeholder="Константин Васильев" autocomplete="name" required>
+          </label>
+
+          <label class="field">
+            <span class="field__label">Электронная почта *</span>
+            <input class="field__input" type="email" name="email" placeholder="vasiliev@studio.com" autocomplete="email" required>
+          </label>
+
+          <label class="field">
+            <span class="field__label">Телефон</span>
+            <input class="field__input" type="tel" name="phone" placeholder="+7 (900) 000-00-00" autocomplete="tel">
+          </label>
+
+          <label class="field field--textarea">
+            <span class="field__label">Сообщение / комментарий к проекту *</span>
+            <textarea class="field__input" name="message" rows="3" placeholder="Опишите предмет, ориентировочные габариты, породу дерева или прикрепите ссылку на мудборд..." required></textarea>
+          </label>
+
+          <label class="checkbox">
+            <input class="checkbox__input" type="checkbox" name="designer">
+            <span>Я дизайнер интерьера или архитектор</span>
+          </label>
+
+          <div class="request-form__actions">
+            <button class="request-form__submit" type="submit">Отправить заявку <span aria-hidden="true">→</span></button>
+            <p class="request-form__status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+
+        <p class="contacts__consent">
+          Нажимая кнопку «Отправить заявку», вы даете согласие на обработку персональных
+          данных в соответствии с регламентом конфиденциальности студии.
+        </p>
+      </div>
+
+      <div class="contacts__info" id="showroom">
+        <div class="contacts__info-list">
+          <div class="contacts__block">
+            <p class="eyebrow">Флагманский шоурум и мастерская</p>
+            <p class="contacts__subtitle">Санкт-Петербург</p>
+            <p class="contacts__address">Набережная реки Мойки, 102</p>
+            <p class="contacts__muted">Ежедневно с 11:00 до 20:00 (по предварительной записи)</p>
+          </div>
+
+          <div class="contacts__block contacts__block--direct">
+            <div>
+              <p class="eyebrow">Прямой телефон</p>
+              <a href="tel:+78129801234" class="contacts__direct">+7 (812) 980-12-34</a>
+            </div>
+            <div>
+              <p class="eyebrow">Электронная почта</p>
+              <a href="mailto:concierge@arketip.ru" class="contacts__direct">concierge@arketip.ru</a>
+            </div>
+          </div>
+
+          <div class="contacts__block">
+            <p class="eyebrow">Следить за процессом</p>
+            <ul class="contacts__socials">
+              <li><a href="#">Telegram <span aria-hidden="true">↗</span></a></li>
+              <li><a href="#">Pinterest <span aria-hidden="true">↗</span></a></li>
+              <li><a href="#">Instagram <span aria-hidden="true">↗</span></a></li>
+            </ul>
+          </div>
+
+          <div class="program">
+            <div class="program__head">
+              <div>
+                <p class="eyebrow">Архитекторам и бюро</p>
+                <h3 class="contacts__subtitle">Специальная программа</h3>
+              </div>
+              <img src="images/contacts/icon-bookmark.svg" width="10.5" height="17.4615" alt="">
+            </div>
+            <p class="contacts__muted program__text">
+              Предоставляем подробные 3D-модели (OBJ/FBX/3DS Max), спецификации для
+              ведомостей отделки и физический бокс с образцами натурального массива,
+              шпона ясеня, дуба и текстиля kvadrat®.
+            </p>
+            <a href="mailto:concierge@arketip.ru?subject=Материалы для спецификаций" class="program__link">
+              Запросить материалы для спецификаций <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <p class="contacts__note">Шоурум доступен для индивидуальных презентаций клиентам дизайн-студий.</p>
+      </div>
+    </section>
+
+    <!-- 4. Карта -->
+    <section class="location" aria-labelledby="location-title">
+      <div class="container location__head">
+        <div>
+          <p class="eyebrow">Локация</p>
+          <h2 class="contacts__subtitle" id="location-title">Флагманский адрес на Мойке</h2>
+        </div>
+        <p class="location__meta">
+          <span>59°55'48.2"N 30°17'44.8"E</span>
+          <span class="location__sep" aria-hidden="true">|</span>
+          <span>Вход со двора через парадные ворота</span>
+        </p>
+      </div>
+
+      <div class="map">
+        <div class="map__canvas" aria-hidden="true">
+          <img class="map__layer" src="images/contacts/map/vector-0.svg" alt="" style="left: 0; top: 0; width: 100%; height: 100%;">
+          <img class="map__layer" src="images/contacts/map/vector-1.svg" alt="" style="left: 5%; top: 5.64%; width: 13.75%; height: 25.76%;">
+          <img class="map__layer" src="images/contacts/map/vector-2.svg" alt="" style="left: 21.25%; top: 8.5%; width: 17.5%; height: 21.46%;">
+          <img class="map__layer" src="images/contacts/map/vector-3.svg" alt="" style="left: 41.25%; top: 4.2%; width: 19.37%; height: 27.2%;">
+          <img class="map__layer" src="images/contacts/map/vector-4.svg" alt="" style="left: 63.13%; top: 7.07%; width: 16.24%; height: 24.33%;">
+          <img class="map__layer" src="images/contacts/map/vector-5.svg" alt="" style="left: 81.88%; top: 4.2%; width: 14.37%; height: 27.2%;">
+          <img class="map__layer" src="images/contacts/map/vector-6.svg" alt="" style="left: -3.13%; top: 44.43%; width: 106.26%; height: 21.31%;">
+          <img class="map__layer map__bridge" src="images/contacts/map/vector-7.svg" width="22.4" height="84" alt="" style="left: calc(33.825% - 11.2px); top: calc(52.15% - 42px); transform: rotate(-8deg);">
+          <img class="map__layer map__bridge" src="images/contacts/map/vector-8.svg" width="22.4" height="88" alt="" style="left: calc(69.825% - 11.2px); top: calc(52.335% - 44px); transform: rotate(7deg);">
+          <img class="map__layer" src="images/contacts/map/vector-4.svg" alt="" style="left: 6.25%; top: 70.04%; width: 16.25%; height: 24.32%;">
+          <img class="map__layer" src="images/contacts/map/vector-9.svg" alt="" style="left: 25%; top: 72.9%; width: 21.25%; height: 22.9%;">
+          <img class="map__layer" src="images/contacts/map/vector-10.svg" alt="" style="left: 48.75%; top: 70.04%; width: 16.25%; height: 25.76%;">
+          <img class="map__layer" src="images/contacts/map/vector-11.svg" alt="" style="left: 67.5%; top: 71.47%; width: 13.12%; height: 22.89%;">
+          <img class="map__layer" src="images/contacts/map/vector-12.svg" alt="" style="left: 83.13%; top: 74.33%; width: 14.99%; height: 21.47%;">
+          <img class="map__layer map__road-h" src="images/contacts/map/vector-13.svg" alt="" style="top: 37.12%;">
+          <img class="map__layer map__road-h" src="images/contacts/map/vector-13.svg" alt="" style="top: 68.6%;">
+          <img class="map__layer map__road-v" src="images/contacts/map/vector-14.svg" alt="" style="left: 20%;">
+          <img class="map__layer map__road-v" src="images/contacts/map/vector-14.svg" alt="" style="left: 40%;">
+          <img class="map__layer map__road-v" src="images/contacts/map/vector-14.svg" alt="" style="left: 61.88%;">
+          <img class="map__layer map__road-v" src="images/contacts/map/vector-14.svg" alt="" style="left: 80.63%;">
+        </div>
+
+        <div class="map__pin">
+          <span class="map__marker" aria-hidden="true"></span>
+          <div class="map__card">
+            <p class="map__card-label">Шоурум &amp; мастерская</p>
+            <p class="map__card-title">ARKETIP Студия</p>
+            <p class="map__card-address">наб. реки Мойки, 102</p>
+            <a class="map__card-link" href="https://yandex.ru/maps/?text=Санкт-Петербург, набережная реки Мойки, 102" target="_blank" rel="noopener">
+              Проложить маршрут <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <p class="map__area">Санкт-Петербург, Адмиралтейский район</p>
+
+        <div class="map__zoom">
+          <button class="map__zoom-btn" type="button" data-zoom="in" aria-label="Увеличить">
+            <img src="images/contacts/icon-plus.svg" width="8.66662" height="8.66662" alt="">
+          </button>
+          <button class="map__zoom-btn" type="button" data-zoom="out" aria-label="Уменьшить">
+            <img src="images/contacts/icon-minus.svg" width="8.66662" height="0.999976" alt="">
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 5. Подвал -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid footer__grid--even">
+        <div class="footer__brand footer__brand--compact">
+          <a href="index.html" class="logo">ARKETIP</a>
+          <p class="footer__about">
+            Студия современной скандинавской мебели. Чистота линий, северный массив
+            и долговечная эстетика для жилых и общественных пространств.
+          </p>
+          <p class="footer__address">Санкт-Петербург • Копенгаген • Стокгольм</p>
+        </div>
+
+        <nav class="footer__nav" aria-label="Навигация в подвале">
+          <div class="footer__col">
+            <h4 class="footer__heading">Магазин</h4>
+            <ul class="footer__list">
+              <li><a href="collection.html">Коллекция</a></li>
+              <li><a href="living.html">Гостиная</a></li>
+              <li><a href="bedroom.html">Спальня</a></li>
+              <li><a href="kitchen.html">Кухня</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__heading">О бренде</h4>
+            <ul class="footer__list">
+              <li><a href="philosophy.html">Философия</a></li>
+              <li><a href="philosophy.html#materials">Материалы</a></li>
+              <li><a href="philosophy.html#workshop">Мастерская</a></li>
+              <li><a href="#showroom">Шоурум</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__heading">Связь</h4>
+            <ul class="footer__list">
+              <li><a href="contacts.html" class="footer__link--active" aria-current="page">Контакты</a></li>
+              <li><a href="tel:+78129801234">+7 (812) 980-12-34</a></li>
+              <li><a href="mailto:concierge@arketip.ru">concierge@arketip.ru</a></li>
+              <li class="footer__socials footer__socials--plain">
+                <a href="#">Telegram</a>
+                <a href="#">Pinterest</a>
+                <a href="#">Instagram</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2025 ARKETIP Furniture Studio. Все права защищены.</p>
+        <ul class="footer__legal">
+          <li><a href="#">Политика конфиденциальности</a></li>
+          <li><a href="#">Условия сотрудничества</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/modern.js"></script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARKETIP — студия авторской мебели</title>
+  <meta name="description" content="Мебель ручной работы из натуральных материалов. Студия авторской мебели ARKETIP, Санкт-Петербург.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/modern.css">
+</head>
+<body class="page-home">
+
+  <!-- 1. Шапка -->
+  <header class="header">
+    <div class="container header__inner">
+      <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="burger__line"></span>
+      </button>
+
+      <a href="index.html" class="logo">ARKETIP</a>
+
+      <nav class="nav" aria-label="Основная навигация">
+        <ul class="nav__list">
+          <li><a href="collection.html" class="nav__link">Коллекция</a></li>
+          <li><a href="philosophy.html" class="nav__link">Философия</a></li>
+          <li><a href="interiors.html" class="nav__link">Интерьеры</a></li>
+          <li><a href="contacts.html" class="nav__link">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <a href="cart.html" class="cart-btn" aria-label="Корзина покупок">
+        <img src="images/icon-bag.svg" width="13.75" height="17.42" alt="">
+        <span class="cart-btn__count" hidden>0</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Мобильное меню -->
+  <div class="mobile-menu" id="mobile-menu">
+    <nav class="mobile-menu__inner" aria-label="Мобильная навигация">
+      <p class="mobile-menu__label">Меню студии</p>
+      <ul class="mobile-menu__list">
+        <li><a href="collection.html" class="mobile-menu__link">Коллекция</a></li>
+        <li><a href="#categories" class="mobile-menu__link">Категории</a></li>
+        <li><a href="interiors.html" class="mobile-menu__link">Интерьеры</a></li>
+        <li><a href="philosophy.html" class="mobile-menu__link">Философия</a></li>
+        <li><a href="contacts.html" class="mobile-menu__link">Контакты</a></li>
+      </ul>
+      <div class="mobile-menu__footer">
+        <address>Шоурум в Санкт-Петербурге:<br>Набережная реки Мойки, 102</address>
+        <p><a href="tel:+78129801234">+7 (812) 980-12-34</a> • <a href="mailto:concierge@arketip.ru">concierge@arketip.ru</a></p>
+      </div>
+    </nav>
+  </div>
+
+  <main>
+
+    <!-- 2. Hero -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <p class="eyebrow">Скандинавское наследие • 2025</p>
+          <h1 class="hero__title">Мебель, которая переживёт тренды</h1>
+          <p class="hero__text">
+            Ручная работа, честные природные материалы и выверенная геометрия тишины.
+            Создано для пространств, ценящих воздух, свет и вечный покой.
+          </p>
+          <a href="collection.html" class="link-arrow">Смотреть коллекцию <span aria-hidden="true">→</span></a>
+        </div>
+
+        <figure class="hero__visual">
+          <img src="images/hero-freja.jpg" alt="Кресло Freja из белёного дуба в светлом интерьере">
+          <figcaption class="hero__caption">Кресло Freja • Белёный дуб</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 3. Новинки -->
+    <section class="section products">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Каталог изделий</p>
+            <h2 class="section-title">Новое в коллекции</h2>
+          </div>
+          <p class="section-head__text">
+            Каждое изделие изготавливается вручную малыми сериями с клеймом мастера.
+          </p>
+          <p class="products__counter" aria-hidden="true"><span data-products-current>01</span> / <span data-products-total>03</span></p>
+        </div>
+
+        <div class="products__grid">
+          <article class="product-card" data-product="klint">
+            <div class="product-card__image">
+              <img src="images/Gemini_Generated_Image_ycqzouycqzouycqz.jpg" alt="Обеденный стул Klint из белёного дуба" loading="lazy">
+              <span class="product-card__badge">Дуб</span>
+            </div>
+            <div class="product-card__head">
+              <h3 class="product-card__title">Klint</h3>
+              <p class="product-card__price">34 000 ₽</p>
+            </div>
+            <p class="product-card__desc">Обеденный стул из белёного дуба</p>
+            <button class="product-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+          </article>
+
+          <article class="product-card" data-product="fjord">
+            <div class="product-card__image">
+              <img src="images/Gemini_Generated_Image_w0w4o5w0w4o5w0w4.jpg" alt="Журнальный столик Fjord из массива ореха" loading="lazy">
+              <span class="product-card__badge">Орех</span>
+            </div>
+            <div class="product-card__head">
+              <h3 class="product-card__title">Fjord</h3>
+              <p class="product-card__price">48 000 ₽</p>
+            </div>
+            <p class="product-card__desc">Журнальный столик из массива ореха</p>
+            <button class="product-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+          </article>
+
+          <article class="product-card" data-product="vinkel">
+            <div class="product-card__image">
+              <img src="images/Gemini_Generated_Image_vnhmacvnhmacvnhm.jpg" alt="Кресло Vinkel в фактурной обивке букле" loading="lazy">
+              <span class="product-card__badge">Букле</span>
+            </div>
+            <div class="product-card__head">
+              <h3 class="product-card__title">Vinkel</h3>
+              <p class="product-card__price">76 000 ₽</p>
+            </div>
+            <p class="product-card__desc">Кресло в фактурной обивке букле</p>
+            <button class="product-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Категории -->
+    <section class="categories" id="categories">
+      <div class="container categories__inner">
+        <div>
+          <p class="eyebrow">Пространства</p>
+          <h2 class="categories__title">Предметы по назначению</h2>
+        </div>
+
+        <div class="categories__list">
+          <a href="living.html" class="category">
+            <div class="category__image">
+              <img src="images/Gemini_Generated_Image_fzl0hifzl0hifzl0.jpg" alt="Гостиная с мебелью ARKETIP" loading="lazy">
+            </div>
+            <div class="category__info">
+              <div>
+                <h3 class="category__title">Гостиная</h3>
+                <p class="category__desc">Диваны, низкие столики, стеллажные системы</p>
+              </div>
+              <img src="images/icon-arrow.svg" width="9.47" height="3.75" alt="" class="category__arrow">
+            </div>
+          </a>
+
+          <a href="bedroom.html" class="category">
+            <div class="category__image">
+              <img src="images/Gemini_Generated_Image_sxj0blsxj0blsxj0.jpg" alt="Спальня с кроватью из ясеня" loading="lazy">
+            </div>
+            <div class="category__info">
+              <div>
+                <h3 class="category__title">Спальня</h3>
+                <p class="category__desc">Кровати из ясеня, комоды, тумбы из массива</p>
+              </div>
+              <img src="images/icon-arrow.svg" width="9.47" height="3.75" alt="" class="category__arrow">
+            </div>
+          </a>
+
+          <a href="kitchen.html" class="category">
+            <div class="category__image">
+              <img src="images/Gemini_Generated_Image_7ixsaz7ixsaz7ixs.jpg" alt="Кухня с обеденной группой" loading="lazy">
+            </div>
+            <div class="category__info">
+              <div>
+                <h3 class="category__title">Кухня</h3>
+                <p class="category__desc">Обеденные столовые группы, барные стулья</p>
+              </div>
+              <img src="images/icon-arrow.svg" width="9.47" height="3.75" alt="" class="category__arrow">
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Интерьеры -->
+    <section class="section interiors">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Проекты бюро</p>
+            <h2 class="section-title">Интерьеры, в которых хочется жить</h2>
+          </div>
+          <a href="interiors.html" class="link-arrow interiors__head-link">Смотреть все <span aria-hidden="true">→</span></a>
+        </div>
+
+        <div class="interiors__grid">
+          <article class="project">
+            <div class="project__image">
+              <img src="images/Gemini_Generated_Image_umusj2umusj2umus.jpg" alt="Пентхаус на набережной" loading="lazy">
+            </div>
+            <h3 class="project__title">Пентхаус на набережной<span class="project__year">2024</span></h3>
+            <p class="project__desc">Санкт-Петербург • Полная комплектация мебелью студии</p>
+          </article>
+
+          <article class="project">
+            <div class="project__image">
+              <img src="images/Gemini_Generated_Image_oryfvhoryfvhoryf.jpg" alt="Загородная резиденция в Репино" loading="lazy">
+            </div>
+            <h3 class="project__title">Загородная резиденция Репино<span class="project__year">2024</span></h3>
+            <p class="project__desc">Курортный район • Архитектурная столярная группа</p>
+          </article>
+
+          <article class="project">
+            <div class="project__image">
+              <img src="images/Gemini_Generated_Image_7k0d9c7k0d9c7k0d.jpg" alt="Апартаменты в центре Москвы" loading="lazy">
+            </div>
+            <h3 class="project__title">Апартаменты в центре<span class="project__year">2025</span></h3>
+            <p class="project__desc">Москва • Индивидуальные позиции и серия Vinkel</p>
+          </article>
+        </div>
+
+        <a href="interiors.html" class="link-arrow interiors__more">Смотреть все <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <!-- 6. Философия -->
+    <section class="section philosophy">
+      <div class="container philosophy__grid">
+        <div class="philosophy__content">
+          <p class="eyebrow">Манифест материалов</p>
+          <h2 class="section-title philosophy__title">Честность волокна, покой формы</h2>
+          <div class="philosophy__text">
+            <p>
+              Мы относимся к дереву как к живому хранителю времени. Каждый сучок, годовое кольцо
+              и природная шероховатость не скрываются под глянцевыми лаками, а бережно подчеркиваются
+              натуральными маслами и восками на растительной основе.
+            </p>
+            <p>
+              Наша мебель создаётся не для того, чтобы поражать сиюминутной экспрессией. Её задача —
+              растворяться в пространстве, даря непреходящее тактильное удовольствие и обрастая
+              благородной патиной с каждым десятилетием совместной жизни.
+            </p>
+          </div>
+          <a href="philosophy.html" class="link-arrow">О мастерской <span aria-hidden="true">→</span></a>
+        </div>
+
+        <figure class="philosophy__visual">
+          <img src="images/Gemini_Generated_Image_p06kqtp06kqtp06k.jpg" alt="Текстура кавказского дуба крупным планом" loading="lazy">
+          <figcaption class="philosophy__badge">Кавказский дуб • 120 лет</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 7. Ключевые факты (мобильная версия) -->
+    <section class="facts" aria-label="Ключевые факты">
+      <dl class="container facts__grid">
+        <div class="facts__item">
+          <dt class="facts__label">Материалы</dt>
+          <dd class="facts__value">100% массив</dd>
+        </div>
+        <div class="facts__item">
+          <dt class="facts__label">Покрытие</dt>
+          <dd class="facts__value">Масла и воск</dd>
+        </div>
+        <div class="facts__item">
+          <dt class="facts__label">Гарантия</dt>
+          <dd class="facts__value">15 лет на каркас</dd>
+        </div>
+        <div class="facts__item">
+          <dt class="facts__label">Производство</dt>
+          <dd class="facts__value">Санкт-Петербург</dd>
+        </div>
+      </dl>
+    </section>
+
+  </main>
+
+  <!-- 8. Подвал -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="logo">ARKETIP</a>
+          <p class="footer__about">
+            Студия авторской мебели и архитектурных предметов интерьера.
+            Разработано в Санкт-Петербурге по канонам северного модернизма.
+          </p>
+          <address class="footer__address">
+            Шоурум: Набережная реки Мойки, 102<br>
+            Ежедневно с 11:00 до 20:00 (по предварительной записи)
+          </address>
+        </div>
+
+        <nav class="footer__nav" aria-label="Навигация в подвале">
+          <div class="footer__col">
+            <h4 class="footer__heading">Магазин</h4>
+            <ul class="footer__list">
+              <li><a href="collection.html">Коллекция</a></li>
+              <li><a href="living.html">Гостиная</a></li>
+              <li><a href="bedroom.html">Спальня</a></li>
+              <li><a href="kitchen.html">Кухня</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__heading">О бренде</h4>
+            <ul class="footer__list">
+              <li><a href="philosophy.html">Философия</a></li>
+              <li><a href="philosophy.html#materials">Материалы</a></li>
+              <li><a href="philosophy.html#workshop">Мастерская</a></li>
+              <li><a href="contacts.html#showroom">Шоурум</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__heading">Контакты</h4>
+            <ul class="footer__list">
+              <li><a href="mailto:concierge@arketip.ru">concierge@arketip.ru</a></li>
+              <li><a href="tel:+78129801234">+7 (812) 980-12-34</a></li>
+              <li><a href="#">Telegram</a></li>
+              <li><a href="#">Pinterest</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2025 ARKETIP Furniture Studio. Все права защищены.</p>
+        <ul class="footer__legal">
+          <li><a href="#">Конфиденциальность</a></li>
+          <li><a href="#">Публичная оферта</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/modern.js"></script>
+</body>
+</html>

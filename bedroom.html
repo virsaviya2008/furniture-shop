@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Спальня — Коллекция | ARKETIP</title>
+  <meta name="description" content="Мебель ARKETIP для спальни: кровати из массива ясеня и дуба, прикроватные тумбы, комоды и текстиль из натурального льна.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/modern.css">
+</head>
+<body>
+
+  <!-- 1. Шапка -->
+  <header class="header">
+    <div class="container header__inner">
+      <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="burger__line"></span>
+      </button>
+
+      <a href="index.html" class="logo">ARKETIP</a>
+
+      <nav class="nav" aria-label="Основная навигация">
+        <ul class="nav__list">
+          <li><a href="collection.html" class="nav__link nav__link--active">Коллекция</a></li>
+          <li><a href="philosophy.html" class="nav__link">Философия</a></li>
+          <li><a href="interiors.html" class="nav__link">Интерьеры</a></li>
+          <li><a href="contacts.html" class="nav__link">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <a href="cart.html" class="cart-btn" aria-label="Корзина покупок">
+        <img src="images/icon-bag.svg" width="13.75" height="17.42" alt="">
+        <span class="cart-btn__count" hidden>0</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Мобильное меню -->
+  <div class="mobile-menu" id="mobile-menu">
+    <nav class="mobile-menu__inner" aria-label="Мобильная навигация">
+      <p class="mobile-menu__label">Меню студии</p>
+      <ul class="mobile-menu__list">
+        <li><a href="collection.html" class="mobile-menu__link mobile-menu__link--active" aria-current="page">Коллекция</a></li>
+        <li><a href="index.html#categories" class="mobile-menu__link">Категории</a></li>
+        <li><a href="interiors.html" class="mobile-menu__link">Интерьеры</a></li>
+        <li><a href="philosophy.html" class="mobile-menu__link">Философия</a></li>
+        <li><a href="contacts.html" class="mobile-menu__link">Контакты</a></li>
+      </ul>
+      <div class="mobile-menu__footer">
+        <address>Шоурум в Санкт-Петербурге:<br>Набережная реки Мойки, 102</address>
+        <p><a href="tel:+78129801234">+7 (812) 980-12-34</a> • <a href="mailto:concierge@arketip.ru">concierge@arketip.ru</a></p>
+      </div>
+    </nav>
+  </div>
+
+  <main class="catalog room">
+    <div class="catalog__inner">
+
+      <!-- 2. Хлебные крошки, заголовок и фильтры -->
+      <section class="room__intro">
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+          <ol class="breadcrumbs__list">
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="collection.html">Коллекция</a></li>
+            <li aria-current="page">Спальня</li>
+          </ol>
+        </nav>
+
+        <div class="room__head">
+          <h1 class="catalog__title">Спальня</h1>
+          <p class="room__text">
+            Место восстановления сил и безмятежности. Кровати из массива северного ясеня и дуба,
+            мягкие изголовья в натуральном бельгийском льне, прикроватные тумбы со скрытыми
+            стыками и тактильный текстиль ручной работы.
+          </p>
+        </div>
+
+        <div class="filters filters--compact" role="group" aria-label="Фильтр по типу мебели">
+          <button class="filters__btn filters__btn--active" type="button" data-filter="all" aria-pressed="true">Все предметы (<span data-count>9</span>)</button>
+          <button class="filters__btn" type="button" data-filter="beds" aria-pressed="false">Кровати (<span data-count>2</span>)</button>
+          <button class="filters__btn" type="button" data-filter="nightstands" aria-pressed="false">Прикроватные тумбы (<span data-count>2</span>)</button>
+          <button class="filters__btn" type="button" data-filter="storage" aria-pressed="false">Комоды и платяные шкафы (<span data-count>1</span>)</button>
+          <button class="filters__btn" type="button" data-filter="textiles" aria-pressed="false">Текстиль и пледы (<span data-count>1</span>)</button>
+        </div>
+      </section>
+
+      <!-- 3. Экспозиция сезона -->
+      <section class="feature" aria-labelledby="feature-title">
+        <div class="feature__image">
+          <img src="images/bedroom/banner.jpg" alt="Спальня загородного дома с мебелью серии Sove и Kub" loading="lazy">
+        </div>
+        <div class="feature__content">
+          <div>
+            <p class="feature__eyebrow">Экспозиция сезона</p>
+            <h2 class="feature__title" id="feature-title">Сон в тишине северного утра.</h2>
+            <p class="feature__text">
+              Серия Sove &amp; Kub в проекте загородного дома в Сестрорецке. Натуральный белёный ясень,
+              столярные соединения ласточкин хвост и неотбеленный лён. Гармония тактильной тишины
+              и природной архитектуры.
+            </p>
+          </div>
+          <a href="interiors.html" class="link-arrow">Исследовать проект <span aria-hidden="true">→</span></a>
+        </div>
+      </section>
+
+      <!-- 4. Каталог -->
+      <section class="catalog__grid" aria-label="Товары для спальни">
+          <article class="catalog-card catalog-card--badged" data-product="sove" data-category="beds">
+            <div class="catalog-card__image">
+              <img src="images/collection/item-6.jpg" alt="Кровать Sove" loading="lazy">
+              <span class="catalog-card__badge">Арт. SV-01</span>
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Кровать Sove</h2>
+              <p class="catalog-card__price">165 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">Массив северного ясеня, съёмный льняной чехол</p>
+            <div class="catalog-card__footer">
+              <button class="product-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+          <article class="catalog-card catalog-card--badged" data-product="kub" data-category="nightstands">
+            <div class="catalog-card__image">
+              <img src="images/collection/item-7.jpg" alt="Прикроватная тумба Kub" loading="lazy">
+              <span class="catalog-card__badge">Арт. KB-02</span>
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Прикроватная тумба Kub</h2>
+              <p class="catalog-card__price">28 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">Массив дуба, выдвижной ящик с доводчиком, скрытый кабель-канал</p>
+            <div class="catalog-card__footer">
+              <button class="product-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+          <article class="catalog-card catalog-card--badged" data-product="ro" data-category="beds">
+            <div class="catalog-card__image">
+              <img src="images/bedroom/ro.jpg" alt="Кровать Ro" loading="lazy">
+              <span class="catalog-card__badge">Арт. RO-04</span>
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Кровать Ro</h2>
+              <p class="catalog-card__price">185 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">Низкий подиум в стиле japandi, цельный массив дуба</p>
+            <div class="catalog-card__footer">
+              <button class="product-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+          <article class="catalog-card catalog-card--badged" data-product="dybe" data-category="storage">
+            <div class="catalog-card__image">
+              <img src="images/bedroom/dybe.jpg" alt="Комод Dybe" loading="lazy">
+              <span class="catalog-card__badge">Арт. DB-08</span>
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Комод Dybe</h2>
+              <p class="catalog-card__price">124 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">Белёный дуб, 4 ящика, ручки с латунной фрезеровкой</p>
+            <div class="catalog-card__footer">
+              <button class="product-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+          <article class="catalog-card catalog-card--badged" data-product="hvile" data-category="benches">
+            <div class="catalog-card__image">
+              <img src="images/bedroom/hvile.jpg" alt="Банкетка Hvile" loading="lazy">
+              <span class="catalog-card__badge">Арт. HV-03</span>
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Банкетка Hvile</h2>
+              <p class="catalog-card__price">54 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">Массив ясеня, настил из кожи растительного дубления</p>
+            <div class="catalog-card__footer">
+              <button class="product-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+          <article class="catalog-card catalog-card--badged" data-product="dis" data-category="lighting">
+            <div class="catalog-card__image">
+              <img src="images/bedroom/dis.jpg" alt="Настольная лампа Dis" loading="lazy">
+              <span class="catalog-card__badge">Арт. DS-05</span>
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Настольная лампа Dis</h2>
+              <p class="catalog-card__price">32 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">Основание из серого травертина, плафон из молочного стекла</p>
+            <div class="catalog-card__footer">
+              <button class="product-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+          <article class="catalog-card catalog-card--badged" data-product="linum" data-category="textiles">
+            <div class="catalog-card__image">
+              <img src="images/bedroom/linum.jpg" alt="Комплект белья Linum" loading="lazy">
+              <span class="catalog-card__badge">Арт. LN-09</span>
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Комплект белья Linum</h2>
+              <p class="catalog-card__price">24 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">100% органический умягчённый лён, оттенок Овёс</p>
+            <div class="catalog-card__footer">
+              <button class="product-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+          <article class="catalog-card catalog-card--badged" data-product="spejl" data-category="decor">
+            <div class="catalog-card__image">
+              <img src="images/bedroom/spejl.jpg" alt="Зеркало Spejl" loading="lazy">
+              <span class="catalog-card__badge">Арт. SP-06</span>
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Зеркало Spejl</h2>
+              <p class="catalog-card__price">42 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">Цельный обод из ореха ручной гибки, диаметр 80 см</p>
+            <div class="catalog-card__footer">
+              <button class="product-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+          <article class="catalog-card catalog-card--badged" data-product="svaeve" data-category="nightstands">
+            <div class="catalog-card__image">
+              <img src="images/bedroom/svaeve.jpg" alt="Подвесной столик Svæve" loading="lazy">
+              <span class="catalog-card__badge">Арт. SV-07</span>
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Подвесной столик Svæve</h2>
+              <p class="catalog-card__price">19 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">Крепление к стене, массив светлого дуба</p>
+            <div class="catalog-card__footer">
+              <button class="product-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+      </section>
+
+      <!-- 5. Индивидуальное изготовление -->
+      <section class="custom-order" aria-labelledby="custom-order-title">
+        <div class="custom-order__content">
+          <p class="feature__eyebrow">Индивидуальное изготовление</p>
+          <h2 class="custom-order__title" id="custom-order-title">Кровати нестандартных размеров и палитра Kvadrat</h2>
+          <p class="custom-order__text">
+            Адаптация габаритов кровати под ваш анатомический матрас, выбор из 40 оттенков
+            натурального бельгийского льна и консультация архитектора студии.
+          </p>
+        </div>
+        <a href="contacts.html" class="custom-order__btn">Заказать консультацию <span aria-hidden="true">→</span></a>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- 5. Подвал -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid footer__grid--even">
+        <div class="footer__brand footer__brand--compact">
+          <a href="index.html" class="logo">ARKETIP</a>
+          <p class="footer__about">
+            Скандинавская авторская мебель и свет. Чистые линии, натуральные породы дерева
+            и тактильный текстиль.
+          </p>
+        </div>
+
+        <nav class="footer__nav" aria-label="Навигация в подвале">
+          <div class="footer__col">
+            <h4 class="footer__heading">Магазин</h4>
+            <ul class="footer__list">
+              <li><a href="collection.html">Коллекция</a></li>
+              <li><a href="living.html">Гостиная</a></li>
+              <li><a href="bedroom.html">Спальня</a></li>
+              <li><a href="kitchen.html">Кухня</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__heading">О бренде</h4>
+            <ul class="footer__list">
+              <li><a href="philosophy.html">Философия</a></li>
+              <li><a href="philosophy.html#materials">Материалы</a></li>
+              <li><a href="philosophy.html#workshop">Мастерская</a></li>
+              <li><a href="contacts.html">Контакты</a></li>
+              <li><a href="contacts.html#showroom">Шоурум</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__heading">Соцсети</h4>
+            <ul class="footer__list">
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">Pinterest</a></li>
+              <li><a href="#">Telegram</a></li>
+              <li><a href="mailto:hello@arketip.design">hello@arketip.design</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2025 ARKETIP Furniture Studio. Все права защищены.</p>
+        <ul class="footer__legal">
+          <li><a href="#">Конфиденциальность</a></li>
+          <li><a href="#">Условия сервиса</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/modern.js"></script>
+</body>
+</html>

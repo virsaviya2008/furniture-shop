@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Оформление заказа — ARKETIP</title>
+  <meta name="description" content="Оформление заказа ARKETIP: контактные данные, бережная доставка, сборка мастерами и оплата.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/modern.css">
+</head>
+<body>
+
+  <!-- 1. Шапка оформления -->
+  <header class="header">
+    <div class="container header__inner checkout-header">
+      <a href="cart.html" class="checkout-header__back"><span aria-hidden="true">←</span> Вернуться в корзину</a>
+      <a href="index.html" class="logo">ARKETIP</a>
+      <div class="checkout-header__actions">
+        <span class="checkout-header__secure">
+          <img src="images/checkout/icon-lock.svg" width="11.2499" height="14.6249" alt="">
+          Защищённый шлюз
+        </span>
+        <a href="cart.html" class="cart-btn" aria-label="Корзина покупок">
+          <img src="images/icon-bag.svg" width="13.75" height="17.42" alt="">
+          <span class="cart-btn__count" hidden>0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="checkout">
+    <div class="container">
+
+      <!-- 2. Этапы и заголовок -->
+      <div class="checkout__head">
+        <nav class="breadcrumbs breadcrumbs--steps" aria-label="Этапы заказа">
+          <ol class="breadcrumbs__list">
+            <li><a href="cart.html">Корзина</a></li>
+            <li aria-current="step" data-step="checkout">Оформление заказа</li>
+            <li class="breadcrumbs__upcoming" data-step="done">Подтверждение</li>
+          </ol>
+        </nav>
+        <div class="checkout__title-row">
+          <h1 class="checkout__title">Оформление заказа</h1>
+          <p class="checkout__step" data-checkout-step>Шаг 1 из 3: контактные данные и доставка</p>
+        </div>
+      </div>
+
+      <!-- 3. Форма и сумма заказа -->
+      <div class="checkout__layout" data-checkout-filled hidden>
+        <form class="checkout-form" novalidate data-checkout-form>
+
+          <!-- Шаг 1 -->
+          <section class="checkout-step" aria-labelledby="step-contacts">
+            <div class="checkout-step__head">
+              <h2 class="checkout-step__title" id="step-contacts"><span>01</span> Контактная информация</h2>
+              <p class="checkout-step__note">Обязательные поля *</p>
+            </div>
+            <div class="checkout-step__body">
+              <label class="checkout-field">
+                <span class="checkout-field__label">Имя и фамилия *</span>
+                <input class="checkout-field__input" type="text" name="name" placeholder="Анна Васильева" autocomplete="name" required>
+              </label>
+              <div class="checkout-row">
+                <label class="checkout-field">
+                  <span class="checkout-field__label">Номер телефона *</span>
+                  <input class="checkout-field__input" type="tel" name="phone" placeholder="+7 (999) 000-00-00" autocomplete="tel" pattern="[0-9()+\-\s]{10,}" required>
+                </label>
+                <label class="checkout-field">
+                  <span class="checkout-field__label">E-mail для чека и трекинга *</span>
+                  <input class="checkout-field__input" type="email" name="email" placeholder="anna.v@domain.com" autocomplete="email" required>
+                </label>
+              </div>
+              <label class="checkout-check">
+                <input type="checkbox" name="notify" checked>
+                Получать оперативные уведомления о статусе заказа в Telegram / WhatsApp
+              </label>
+            </div>
+          </section>
+
+          <!-- Шаг 2 -->
+          <section class="checkout-step" aria-labelledby="step-delivery">
+            <div class="checkout-step__head">
+              <h2 class="checkout-step__title" id="step-delivery"><span>02</span> Способ и адрес доставки</h2>
+              <p class="checkout-step__tag">Кураторский сервис</p>
+            </div>
+            <div class="checkout-step__body">
+              <div class="choice-grid" role="radiogroup" aria-label="Способ получения">
+                <label class="choice">
+                  <span class="choice__head">
+                    <span class="choice__control">
+                      <input type="radio" name="delivery" value="courier" checked>
+                      <span class="choice__title choice__title--caps">Курьерская доставка</span>
+                    </span>
+                    <span class="choice__price" data-delivery-price>0 ₽</span>
+                  </span>
+                  <span class="choice__text">Бережная доставка и занос столярными мастерами ARKETIP прямо в комнату.</span>
+                </label>
+                <label class="choice">
+                  <span class="choice__head">
+                    <span class="choice__control">
+                      <input type="radio" name="delivery" value="pickup">
+                      <span class="choice__title choice__title--caps">Самовывоз</span>
+                    </span>
+                    <span class="choice__price">Бесплатно</span>
+                  </span>
+                  <span class="choice__text">Шоурум ARKETIP Studio: Санкт-Петербург, наб. реки Мойки, 102.</span>
+                </label>
+              </div>
+
+              <div class="checkout-address" data-address>
+                <label class="checkout-field">
+                  <span class="checkout-field__label">Город доставки *</span>
+                  <select class="checkout-field__select" name="city">
+                    <option>Санкт-Петербург (в пределах КАД)</option>
+                    <option>Санкт-Петербург (за пределами КАД)</option>
+                    <option>Москва</option>
+                    <option>Другой город — рассчитает куратор</option>
+                  </select>
+                </label>
+                <label class="checkout-field">
+                  <span class="checkout-field__label">Улица, дом, корпус *</span>
+                  <input class="checkout-field__input" type="text" name="street" placeholder="Большая Конюшенная ул., д. 19, лит. А" autocomplete="street-address" required>
+                </label>
+                <div class="checkout-row checkout-row--three">
+                  <label class="checkout-field">
+                    <span class="checkout-field__label">Квартира / офис</span>
+                    <input class="checkout-field__input" type="text" name="flat" placeholder="кв. 42">
+                  </label>
+                  <label class="checkout-field">
+                    <span class="checkout-field__label">Этаж</span>
+                    <input class="checkout-field__input" type="text" name="floor" placeholder="4" inputmode="numeric">
+                  </label>
+                  <label class="checkout-field">
+                    <span class="checkout-field__label">Грузовой лифт</span>
+                    <select class="checkout-field__select" name="lift">
+                      <option>Имеется (подходит под габариты)</option>
+                      <option>Имеется (небольшой)</option>
+                      <option>Отсутствует</option>
+                    </select>
+                  </label>
+                </div>
+                <label class="checkout-field">
+                  <span class="checkout-field__label">Особые пожелания для службы монтажа и логистики</span>
+                  <textarea class="checkout-field__textarea" name="comment" rows="2" placeholder="Удобный временной интервал, код домофона, оформление разового пропуска для авто..."></textarea>
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <!-- Шаг 3 -->
+          <section class="checkout-step" aria-labelledby="step-service">
+            <div class="checkout-step__head">
+              <h2 class="checkout-step__title" id="step-service"><span>03</span> Сопровождение и сервис</h2>
+            </div>
+            <div class="checkout-step__body checkout-step__body--list">
+              <label class="choice choice--row">
+                <input type="checkbox" name="assembly" checked aria-disabled="true">
+                <span class="choice__main">
+                  <span class="choice__head">
+                    <span class="choice__title">Фирменная сборка и монтаж столярными мастерами студии</span>
+                    <span class="choice__price">Включена (0 ₽)</span>
+                  </span>
+                  <span class="choice__text">Мастера распакуют предметы, выполнят регулировку соединений, проверят геометрию и заберут всю техническую упаковку на переработку.</span>
+                </span>
+              </label>
+              <label class="choice choice--row">
+                <input type="checkbox" name="crate">
+                <span class="choice__main">
+                  <span class="choice__head">
+                    <span class="choice__title">Деревянный индивидуальный транспортировочный кофр</span>
+                    <span class="choice__price">+ 4 500 ₽</span>
+                  </span>
+                  <span class="choice__text">Усиленный фанерный ящик со специальными ложементами для максимальной защиты углов при дальней транспортировке.</span>
+                </span>
+              </label>
+            </div>
+          </section>
+
+          <!-- Шаг 4 -->
+          <section class="checkout-step" aria-labelledby="step-payment">
+            <div class="checkout-step__head">
+              <h2 class="checkout-step__title" id="step-payment"><span>04</span> Способ оплаты</h2>
+            </div>
+            <div class="checkout-step__body checkout-step__body--list" role="radiogroup" aria-label="Способ оплаты">
+              <label class="choice choice--pay">
+                <input type="radio" name="payment" value="card" checked>
+                <span class="choice__main">
+                  <span class="choice__title">Банковской картой онлайн</span>
+                  <span class="choice__hint">Мгновенный расчёт: МИР, Visa, Mastercard</span>
+                </span>
+                <span class="choice__aside">MIR / VISA</span>
+              </label>
+              <label class="choice choice--pay">
+                <input type="radio" name="payment" value="invoice">
+                <span class="choice__main">
+                  <span class="choice__title">Счёт для юридических лиц и архитекторов</span>
+                  <span class="choice__hint">Формирование спецификации с НДС 20% и договором поставки</span>
+                </span>
+                <img src="images/checkout/icon-invoice.svg" width="12.4999" height="15.8333" alt="">
+              </label>
+              <label class="choice choice--pay">
+                <input type="radio" name="payment" value="split">
+                <span class="choice__main">
+                  <span class="choice__title">Оплата по частям (Сплит / Долями 0-0-4)</span>
+                  <span class="choice__hint" data-split-hint>4 платежа каждые две недели без переплат</span>
+                </span>
+                <span class="choice__aside choice__aside--strong" data-split-amount></span>
+              </label>
+              <label class="choice choice--pay">
+                <input type="radio" name="payment" value="curator">
+                <span class="choice__main">
+                  <span class="choice__title">Безналичный расчёт при подтверждении куратором</span>
+                  <span class="choice__hint">Ссылка на оплату направляется после утверждения деталей выкрасов</span>
+                </span>
+                <img src="images/checkout/icon-curator.svg" width="12.4999" height="12.1794" alt="">
+              </label>
+            </div>
+          </section>
+
+          <!-- Подтверждение -->
+          <div class="checkout-submit">
+            <p class="checkout-submit__status" role="status" data-checkout-status></p>
+            <button class="checkout-submit__btn" type="submit">
+              <span data-submit-label>Подтвердить и оплатить</span>
+              <span aria-hidden="true">→</span>
+            </button>
+            <div class="checkout-submit__meta">
+              <p class="checkout-submit__secure">
+                <img src="images/checkout/icon-ssl.svg" width="9.99995" height="12.6282" alt="">
+                256-битное SSL-шифрование банка Тинькофф / Сбер
+              </p>
+              <p>Нажимая кнопку, вы принимаете условия <a href="#">Договора-оферты</a></p>
+            </div>
+          </div>
+        </form>
+
+        <!-- Ваш заказ -->
+        <aside class="order-summary" aria-labelledby="order-summary-title">
+          <div class="order-summary__head">
+            <h2 class="order-summary__title" id="order-summary-title">Ваш заказ</h2>
+            <p class="order-summary__count" data-order-count></p>
+          </div>
+
+          <ul class="order-summary__list" data-order-list></ul>
+
+          <form class="promo" data-promo novalidate>
+            <input class="checkout-field__input promo__input" type="text" name="promo" placeholder="Промокод или сертификат" aria-label="Промокод или сертификат">
+            <button class="promo__btn" type="submit">Применить</button>
+            <p class="promo__status" role="status" data-promo-status></p>
+          </form>
+
+          <div class="order-summary__totals">
+            <p class="order-summary__line">
+              <span>Промежуточный итог</span>
+              <span data-order-subtotal></span>
+            </p>
+            <p class="order-summary__line">
+              <span>Доставка и подъём на этаж <span class="order-summary__badge" data-order-promo-badge>Акция</span></span>
+              <strong data-order-delivery></strong>
+            </p>
+            <p class="order-summary__line">
+              <span>Фирменная сборка мастерами</span>
+              <strong>0 ₽ (Включено)</strong>
+            </p>
+            <p class="order-summary__line" data-order-crate-row hidden>
+              <span>Транспортировочный кофр</span>
+              <strong>4 500 ₽</strong>
+            </p>
+            <div class="order-summary__total">
+              <p>
+                <span class="order-summary__total-label">Итого к оплате</span>
+                <span class="order-summary__vat">Включая НДС 20%</span>
+              </p>
+              <strong data-order-total></strong>
+            </div>
+          </div>
+
+          <ul class="order-summary__perks">
+            <li>
+              <img src="images/checkout/icon-passport.svg" width="12.4999" height="18.4422" alt="">
+              <div>
+                <h3>Паспорт подлинности ARKETIP</h3>
+                <p>Каждому изделию присваивается личный серийный номер и латунная плашка мастера.</p>
+              </div>
+            </li>
+            <li>
+              <img src="images/checkout/icon-guarantee.svg" width="12.4999" height="17.7852" alt="">
+              <div>
+                <h3>10 лет безупречной гарантии</h3>
+                <p>Официальная гарантия студии на столярные узлы, геометрию массива и каркасы.</p>
+              </div>
+            </li>
+            <li>
+              <img src="images/checkout/icon-concierge.svg" width="15.8333" height="16.1666" alt="">
+              <div>
+                <h3>Персональное кураторство</h3>
+                <p>Ведущий дизайнер свяжется в течение 30 минут для согласования точного окна доставки.</p>
+              </div>
+            </li>
+          </ul>
+
+          <a href="tel:+78129002410" class="order-summary__concierge">
+            <img src="images/checkout/icon-phone.svg" width="10.625" height="10.625" alt="">
+            Вопросы по заказу: +7 (812) 900-24-10
+          </a>
+        </aside>
+      </div>
+
+      <!-- Пустая корзина -->
+      <div class="cart__empty" data-checkout-empty hidden>
+        <p class="cart__empty-text">В корзине пока ничего нет — оформлять нечего. Загляните в коллекцию, чтобы выбрать предметы.</p>
+        <a href="collection.html" class="link-arrow">Перейти в коллекцию <span aria-hidden="true">→</span></a>
+      </div>
+
+      <!-- Заказ оформлен -->
+      <section class="cart__empty" data-checkout-done hidden>
+        <p class="feature__eyebrow">Заказ № <span data-order-number></span></p>
+        <h2 class="custom-order__title">Спасибо! Заказ принят.</h2>
+        <p class="cart__empty-text">
+          Персональный куратор свяжется с вами в течение 30 минут, чтобы согласовать окно доставки
+          и детали сборки. Подтверждение отправлено на <span data-order-email></span>.
+        </p>
+        <a href="collection.html" class="link-arrow">Вернуться в коллекцию <span aria-hidden="true">→</span></a>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- 5. Подвал -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid footer__grid--even">
+        <div class="footer__brand footer__brand--compact">
+          <a href="index.html" class="logo">ARKETIP</a>
+          <p class="footer__about">
+            Скандинавская авторская мебель и свет. Чистые линии, натуральные породы дерева
+            и тактильный текстиль.
+          </p>
+        </div>
+
+        <nav class="footer__nav" aria-label="Навигация в подвале">
+          <div class="footer__col">
+            <h4 class="footer__heading">Магазин</h4>
+            <ul class="footer__list">
+              <li><a href="collection.html">Коллекция</a></li>
+              <li><a href="living.html">Гостиная</a></li>
+              <li><a href="bedroom.html">Спальня</a></li>
+              <li><a href="kitchen.html">Кухня</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__heading">О бренде</h4>
+            <ul class="footer__list">
+              <li><a href="philosophy.html">Философия</a></li>
+              <li><a href="philosophy.html#materials">Материалы</a></li>
+              <li><a href="philosophy.html#workshop">Мастерская</a></li>
+              <li><a href="contacts.html">Контакты</a></li>
+              <li><a href="contacts.html#showroom">Шоурум</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__heading">Соцсети</h4>
+            <ul class="footer__list">
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">Pinterest</a></li>
+              <li><a href="#">Telegram</a></li>
+              <li><a href="mailto:hello@arketip.design">hello@arketip.design</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2025 ARKETIP Furniture Studio. Все права защищены.</p>
+        <ul class="footer__legal">
+          <li><a href="#">Конфиденциальность</a></li>
+          <li><a href="#">Условия сервиса</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/modern.js"></script>
+</body>
+</html>

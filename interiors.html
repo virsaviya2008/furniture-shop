@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Интерьеры — ARKETIP</title>
+  <meta name="description" content="Проекты и лукбук ARKETIP: жилые пространства, обставленные авторской мебелью из массива дерева и природных материалов.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500&family=Manrope:wght@300;400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/modern.css">
+</head>
+<body>
+
+  <!-- 1. Шапка -->
+  <header class="header">
+    <div class="container header__inner">
+      <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="burger__line"></span>
+      </button>
+
+      <a href="index.html" class="logo">ARKETIP</a>
+
+      <nav class="nav" aria-label="Основная навигация">
+        <ul class="nav__list">
+          <li><a href="collection.html" class="nav__link">Коллекция</a></li>
+          <li><a href="philosophy.html" class="nav__link">Философия</a></li>
+          <li><a href="interiors.html" class="nav__link nav__link--active" aria-current="page">Интерьеры</a></li>
+          <li><a href="contacts.html" class="nav__link">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <a href="cart.html" class="cart-btn" aria-label="Корзина покупок">
+        <img src="images/icon-bag.svg" width="13.75" height="17.42" alt="">
+        <span class="cart-btn__count" hidden>0</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Мобильное меню -->
+  <div class="mobile-menu" id="mobile-menu">
+    <nav class="mobile-menu__inner" aria-label="Мобильная навигация">
+      <p class="mobile-menu__label">Меню студии</p>
+      <ul class="mobile-menu__list">
+        <li><a href="collection.html" class="mobile-menu__link">Коллекция</a></li>
+        <li><a href="index.html#categories" class="mobile-menu__link">Категории</a></li>
+        <li><a href="interiors.html" class="mobile-menu__link mobile-menu__link--active" aria-current="page">Интерьеры</a></li>
+        <li><a href="philosophy.html" class="mobile-menu__link">Философия</a></li>
+        <li><a href="contacts.html" class="mobile-menu__link">Контакты</a></li>
+      </ul>
+      <div class="mobile-menu__footer">
+        <address>Шоурум в Санкт-Петербурге:<br>Набережная реки Мойки, 102</address>
+        <p><a href="tel:+78129801234">+7 (812) 980-12-34</a> • <a href="mailto:concierge@arketip.ru">concierge@arketip.ru</a></p>
+      </div>
+    </nav>
+  </div>
+
+  <main class="lookbook">
+
+    <!-- 2. Вступление -->
+    <section class="lookbook__intro">
+      <div class="container">
+        <p class="eyebrow">Проекты &amp; лукбук</p>
+        <h1 class="lookbook__title">Интерьеры, в которых хочется жить</h1>
+        <p class="lookbook__text">
+          Жилые пространства, обставленные мебелью ARKETIP. Гармония
+          пропорций, света и природных материалов.
+        </p>
+      </div>
+    </section>
+
+    <!-- 3. Галерея проектов -->
+    <section class="container gallery" aria-label="Проекты">
+      <div class="gallery__row">
+        <figure class="interior interior--wide">
+          <div class="interior__image">
+            <img src="images/interiors/project-1.jpg" alt="Гостиная виллы с панорамными окнами в сосновом лесу" loading="lazy">
+          </div>
+          <figcaption class="interior__caption">
+            <span class="interior__title">Вилла в сосновом лесу, Комарово</span>
+            <span class="interior__year">2024</span>
+          </figcaption>
+        </figure>
+
+        <figure class="interior">
+          <div class="interior__image">
+            <img src="images/interiors/project-2.jpg" alt="Кресло и торшер в уголке для чтения" loading="lazy">
+          </div>
+          <figcaption class="interior__caption">
+            <span class="interior__title">Уголок для чтения, Репино</span>
+            <span class="interior__year">2024</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="gallery__row gallery__row--triplet">
+        <figure class="interior">
+          <div class="interior__image">
+            <img src="images/interiors/project-3.jpg" alt="Обеденный стол и подвесные светильники в столовой" loading="lazy">
+          </div>
+          <figcaption class="interior__caption">
+            <span class="interior__title">Столовая зона, Апартаменты на Крестовском</span>
+            <span class="interior__year">2024</span>
+          </figcaption>
+        </figure>
+
+        <figure class="interior">
+          <div class="interior__image">
+            <img src="images/interiors/project-4.jpg" alt="Кровать с льняным бельём в мастер-спальне" loading="lazy">
+          </div>
+          <figcaption class="interior__caption">
+            <span class="interior__title">Мастер-спальня, Загородный дом в Сестрорецке</span>
+            <span class="interior__year">2025</span>
+          </figcaption>
+        </figure>
+
+        <figure class="interior">
+          <div class="interior__image">
+            <img src="images/interiors/project-5.jpg" alt="Кухонный остров с барными стульями" loading="lazy">
+          </div>
+          <figcaption class="interior__caption">
+            <span class="interior__title">Детали кухни, Пентхаус на набережной Мойки</span>
+            <span class="interior__year">2025</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <figure class="interior interior--panorama">
+        <div class="interior__image">
+          <img src="images/interiors/project-6.jpg" alt="Гостиная с открытой террасой на берегу залива" loading="lazy">
+        </div>
+        <figcaption class="interior__caption">
+          <span class="interior__title">Прибрежная резиденция с открытой террасой, Выборгский залив</span>
+          <span class="interior__year">2025</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- 4. Цитата архитектора -->
+    <section class="quote">
+      <div class="container">
+        <figure class="quote__inner">
+          <img src="images/icon-quote.svg" width="20.2403" height="14.1346" alt="">
+          <blockquote class="quote__text">
+            «Пространство оживает не тогда, когда мы заполняем его предметами,
+            а тогда, когда мебель учится вести диалог со светом и тишиной.
+            Истинная роскошь — это способность интерьера дарить покой.»
+          </blockquote>
+          <figcaption class="quote__author">
+            <span class="quote__name">Йоханнес Линдквист</span>
+            <span class="quote__role">Главный архитектор и сооснователь студии ARKETIP</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 5. Подвал -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid footer__grid--even">
+        <div class="footer__brand">
+          <a href="index.html" class="logo">ARKETIP</a>
+          <p class="footer__about">
+            Мастерская скандинавской мебели и интерьерной архитектуры. Чистота
+            пропорций, тактильные природные материалы и вневременной дизайн.
+          </p>
+          <div class="footer__showroom" id="showroom">
+            <p class="footer__heading">Шоурум</p>
+            <p>Санкт-Петербург, ул. Большая Зеленина, 24</p>
+          </div>
+        </div>
+
+        <nav class="footer__nav" aria-label="Навигация в подвале">
+          <div class="footer__col">
+            <h4 class="footer__heading">Коллекция</h4>
+            <ul class="footer__list">
+              <li><a href="collection.html">Коллекция</a></li>
+              <li><a href="living.html">Гостиная</a></li>
+              <li><a href="bedroom.html">Спальня</a></li>
+              <li><a href="kitchen.html">Кухня</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__heading">Студия</h4>
+            <ul class="footer__list">
+              <li><a href="philosophy.html">Философия</a></li>
+              <li><a href="philosophy.html#materials">Материалы</a></li>
+              <li><a href="philosophy.html#workshop">Мастерская</a></li>
+              <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__heading">Индивидуальные проекты</h4>
+            <p class="footer__about">
+              Создаём авторскую мебель под ключ для частных резиденций
+              и общественных пространств по всему миру.
+            </p>
+            <a href="contacts.html" class="link-arrow footer__cta">Обсудить интерьер <span aria-hidden="true">→</span></a>
+          </div>
+        </nav>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2025 ARKETIP Furniture Studio. Все права защищены.</p>
+        <ul class="footer__legal">
+          <li><a href="contacts.html#showroom">Шоурум</a></li>
+          <li><a href="#">Политика конфиденциальности</a></li>
+          <li><a href="#">Условия сотрудничества</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/modern.js"></script>
+</body>
+</html>

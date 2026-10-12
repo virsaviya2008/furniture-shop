@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Коллекция — ARKETIP</title>
+  <meta name="description" content="Коллекция мебели ручной работы ARKETIP: кресла, столы, кровати, стеллажи и свет из массива дуба, ореха и натурального льна.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/modern.css">
+</head>
+<body>
+
+  <!-- 1. Шапка -->
+  <header class="header">
+    <div class="container header__inner">
+      <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="burger__line"></span>
+      </button>
+
+      <a href="index.html" class="logo">ARKETIP</a>
+
+      <nav class="nav" aria-label="Основная навигация">
+        <ul class="nav__list">
+          <li><a href="collection.html" class="nav__link nav__link--active">Коллекция</a></li>
+          <li><a href="philosophy.html" class="nav__link">Философия</a></li>
+          <li><a href="interiors.html" class="nav__link">Интерьеры</a></li>
+          <li><a href="contacts.html" class="nav__link">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <a href="cart.html" class="cart-btn" aria-label="Корзина покупок">
+        <img src="images/icon-bag.svg" width="13.75" height="17.42" alt="">
+        <span class="cart-btn__count" hidden>0</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Мобильное меню -->
+  <div class="mobile-menu" id="mobile-menu">
+    <nav class="mobile-menu__inner" aria-label="Мобильная навигация">
+      <p class="mobile-menu__label">Меню студии</p>
+      <ul class="mobile-menu__list">
+        <li><a href="collection.html" class="mobile-menu__link mobile-menu__link--active" aria-current="page">Коллекция</a></li>
+        <li><a href="index.html#categories" class="mobile-menu__link">Категории</a></li>
+        <li><a href="interiors.html" class="mobile-menu__link">Интерьеры</a></li>
+        <li><a href="philosophy.html" class="mobile-menu__link">Философия</a></li>
+        <li><a href="contacts.html" class="mobile-menu__link">Контакты</a></li>
+      </ul>
+      <div class="mobile-menu__footer">
+        <address>Шоурум в Санкт-Петербурге:<br>Набережная реки Мойки, 102</address>
+        <p><a href="tel:+78129801234">+7 (812) 980-12-34</a> • <a href="mailto:concierge@arketip.ru">concierge@arketip.ru</a></p>
+      </div>
+    </nav>
+  </div>
+
+  <main class="catalog">
+    <div class="catalog__inner">
+
+      <!-- 2. Вступление и фильтры -->
+      <section class="catalog__intro">
+        <h1 class="catalog__title">Коллекция</h1>
+        <p class="catalog__text">
+          Каждый предмет создаётся вручную в нашей мастерской из массива дуба, ореха
+          и натурального льна. Вечные силуэты, рассчитанные на поколения.
+        </p>
+
+        <div class="filters" role="group" aria-label="Фильтр по категориям">
+          <button class="filters__btn filters__btn--active" type="button" data-filter="all" aria-pressed="true">Все (<span data-count>27</span>)</button>
+          <button class="filters__btn" type="button" data-filter="living" aria-pressed="false">Гостиная (<span data-count>9</span>)</button>
+          <button class="filters__btn" type="button" data-filter="bedroom" aria-pressed="false">Спальня (<span data-count>7</span>)</button>
+          <button class="filters__btn" type="button" data-filter="kitchen" aria-pressed="false">Кухня и столовая (<span data-count>7</span>)</button>
+          <button class="filters__btn" type="button" data-filter="lighting" aria-pressed="false">Освещение и предметы (<span data-count>4</span>)</button>
+        </div>
+      </section>
+
+      <!-- 3. Каталог -->
+      <section class="catalog__grid" aria-label="Товары">
+          <article class="catalog-card" data-product="vinkel" data-category="living">
+            <div class="catalog-card__image">
+              <img src="images/collection/item-1.jpg" alt="Кресло Vinkel" loading="lazy">
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Кресло Vinkel</h2>
+              <p class="catalog-card__price">76 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">массив дуба, букле</p>
+            <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+          </article>
+          <article class="catalog-card" data-product="mobler" data-category="kitchen">
+            <div class="catalog-card__image">
+              <img src="images/collection/item-2.jpg" alt="Обеденный стол Møbler" loading="lazy">
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Обеденный стол Møbler</h2>
+              <p class="catalog-card__price">142 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">массив ореха 220см</p>
+            <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+          </article>
+          <article class="catalog-card" data-product="klint" data-category="kitchen">
+            <div class="catalog-card__image">
+              <img src="images/collection/item-3.jpg" alt="Стул Klint" loading="lazy">
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Стул Klint</h2>
+              <p class="catalog-card__price">34 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">белёный дуб, кожа растительного дубления</p>
+            <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+          </article>
+          <article class="catalog-card" data-product="fjord" data-category="living">
+            <div class="catalog-card__image">
+              <img src="images/collection/item-4.jpg" alt="Журнальный столик Fjord" loading="lazy">
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Журнальный столик Fjord</h2>
+              <p class="catalog-card__price">48 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">орех, фацетированный край</p>
+            <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+          </article>
+          <article class="catalog-card" data-product="lignum" data-category="bedroom">
+            <div class="catalog-card__image">
+              <img src="images/collection/item-5.jpg" alt="Комод Lowboard Lignum" loading="lazy">
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Комод Lowboard Lignum</h2>
+              <p class="catalog-card__price">118 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">дуб, латунные ручки</p>
+            <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+          </article>
+          <article class="catalog-card" data-product="sove" data-category="bedroom">
+            <div class="catalog-card__image">
+              <img src="images/collection/item-6.jpg" alt="Кровать Sove" loading="lazy">
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Кровать Sove</h2>
+              <p class="catalog-card__price">165 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">массив ясеня, изголовье из льна</p>
+            <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+          </article>
+          <article class="catalog-card" data-product="kub" data-category="bedroom">
+            <div class="catalog-card__image">
+              <img src="images/collection/item-7.jpg" alt="Прикроватная тумба Kub" loading="lazy">
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Прикроватная тумба Kub</h2>
+              <p class="catalog-card__price">28 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">дуб, скрытый ящик</p>
+            <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+          </article>
+          <article class="catalog-card" data-product="stilk" data-category="lighting">
+            <div class="catalog-card__image">
+              <img src="images/collection/item-8.png" alt="Торшер Stilk" loading="lazy">
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Торшер Stilk</h2>
+              <p class="catalog-card__price">38 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">латунь, абажур из японской бумаги</p>
+            <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+          </article>
+          <article class="catalog-card" data-product="reol" data-category="living">
+            <div class="catalog-card__image">
+              <img src="images/collection/item-9.png" alt="Стеллаж Reol" loading="lazy">
+            </div>
+            <div class="catalog-card__head">
+              <h2 class="catalog-card__title">Стеллаж Reol</h2>
+              <p class="catalog-card__price">92 000 ₽</p>
+            </div>
+            <p class="catalog-card__desc">модульный открытый дуб</p>
+            <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+          </article>
+      </section>
+
+      <!-- 4. Остальные товары — горизонтальная лента -->
+      <section class="catalog-rail" aria-labelledby="catalog-rail-title">
+        <div class="catalog-rail__head">
+          <h2 class="catalog-rail__title" id="catalog-rail-title">Ещё из коллекции</h2>
+          <div class="catalog-rail__nav">
+            <button class="catalog-rail__arrow" type="button" data-rail="prev" aria-label="Прокрутить ленту назад" disabled>
+              <img src="images/icon-arrow-left.svg" width="8.28516" height="3.28125" alt="">
+              Назад
+            </button>
+            <button class="catalog-rail__arrow" type="button" data-rail="next" aria-label="Прокрутить ленту вперёд">
+              Вперёд
+              <img src="images/icon-arrow-right.svg" width="8.28516" height="3.28125" alt="">
+            </button>
+          </div>
+        </div>
+        <div class="catalog-rail__track" tabindex="0" aria-label="Лента товаров, прокручивается горизонтально">
+            <article class="catalog-card" data-product="haven" data-category="living">
+              <div class="catalog-card__image">
+                <img src="images/collection/item-10.jpg" alt="Модульный диван Haven" loading="lazy">
+              </div>
+              <div class="catalog-card__head">
+                <h2 class="catalog-card__title">Модульный диван Haven</h2>
+                <p class="catalog-card__price">210 000 ₽</p>
+              </div>
+              <p class="catalog-card__desc">фактурный лён, белёный дуб</p>
+              <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </article>
+            <article class="catalog-card" data-product="ro" data-category="bedroom">
+              <div class="catalog-card__image">
+                <img src="images/collection/item-28.jpg" alt="Модульный диван Haven" loading="lazy">
+              </div>
+              <div class="catalog-card__head">
+                <h2 class="catalog-card__title">Кровать Ro</h2>
+                <p class="catalog-card__price">185 000 ₽</p>
+              </div>
+              <p class="catalog-card__desc">подиум в эстетике japandi, цельный массив дуба</p>
+              <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </article>
+            <article class="catalog-card" data-product="skaenk" data-category="kitchen">
+              <div class="catalog-card__image">
+                <img src="images/collection/item-12.jpg" alt="Буфет Skænk" loading="lazy">
+              </div>
+              <div class="catalog-card__head">
+                <h2 class="catalog-card__title">Буфет Skænk</h2>
+                <p class="catalog-card__price">156 000 ₽</p>
+              </div>
+              <p class="catalog-card__desc">массив дуба, рифлёные фасады, латунь</p>
+              <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </article>
+            <article class="catalog-card" data-product="rund" data-category="kitchen">
+              <div class="catalog-card__image">
+                <img src="images/collection/item-13.jpg" alt="Обеденный стол Rund" loading="lazy">
+              </div>
+              <div class="catalog-card__head">
+                <h2 class="catalog-card__title">Обеденный стол Rund</h2>
+                <p class="catalog-card__price">128 000 ₽</p>
+              </div>
+              <p class="catalog-card__desc">круглый стол из цельного ореха Ø130 см</p>
+              <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </article>
+            <article class="catalog-card" data-product="dybe" data-category="bedroom">
+              <div class="catalog-card__image">
+                <img src="images/collection/item-14.jpg" alt="Комод Dybe" loading="lazy">
+              </div>
+              <div class="catalog-card__head">
+                <h2 class="catalog-card__title">Комод Dybe</h2>
+                <p class="catalog-card__price">124 000 ₽</p>
+              </div>
+              <p class="catalog-card__desc">белёный дуб, 4 ящика с фрезеровкой</p>
+              <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </article>
+            <article class="catalog-card" data-product="freja" data-category="living">
+              <div class="catalog-card__image">
+                <img src="images/collection/item-15.jpg" alt="Лаунж-кресло Freja" loading="lazy">
+              </div>
+              <div class="catalog-card__head">
+                <h2 class="catalog-card__title">Лаунж-кресло Freja</h2>
+                <p class="catalog-card__price">84 000 ₽</p>
+              </div>
+              <p class="catalog-card__desc">белёный ясень, тёплая шерсть</p>
+              <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </article>
+            <article class="catalog-card" data-product="hvile" data-category="bedroom">
+              <div class="catalog-card__image">
+                <img src="images/collection/item-16.jpg" alt="Банкетка Hvile" loading="lazy">
+              </div>
+              <div class="catalog-card__head">
+                <h2 class="catalog-card__title">Банкетка Hvile</h2>
+                <p class="catalog-card__price">54 000 ₽</p>
+              </div>
+              <p class="catalog-card__desc">массив ясеня, плетёная кожа растительного дубления</p>
+              <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </article>
+            <article class="catalog-card" data-product="ask" data-category="kitchen">
+              <div class="catalog-card__image">
+                <img src="images/collection/item-17.jpg" alt="Полукресло Ask" loading="lazy">
+              </div>
+              <div class="catalog-card__head">
+                <h2 class="catalog-card__title">Полукресло Ask</h2>
+                <p class="catalog-card__price">42 000 ₽</p>
+              </div>
+              <p class="catalog-card__desc">гнутый дуб, мягкое сиденье из льна</p>
+              <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </article>
+            <article class="catalog-card" data-product="torv" data-category="kitchen">
+              <div class="catalog-card__image">
+                <img src="images/collection/item-18.jpg" alt="Барный стул Torv" loading="lazy">
+              </div>
+              <div class="catalog-card__head">
+                <h2 class="catalog-card__title">Барный стул Torv</h2>
+                <p class="catalog-card__price">29 000 ₽</p>
+              </div>
+              <p class="catalog-card__desc">массив ясеня, скрытые шиповые соединения</p>
+              <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </article>
+            <article class="catalog-card" data-product="plateau" data-category="living">
+              <div class="catalog-card__image">
+                <img src="images/collection/item-19.jpg" alt="Приставной столик Plateau" loading="lazy">
+              </div>
+              <div class="catalog-card__head">
+                <h2 class="catalog-card__title">Приставной столик Plateau</h2>
+                <p class="catalog-card__price">32 000 ₽</p>
+              </div>
+              <p class="catalog-card__desc">состаренный мореный дуб</p>
+              <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </article>
+            <article class="catalog-card" data-product="pause" data-category="living">
+              <div class="catalog-card__image">
+                <img src="images/collection/item-20.jpg" alt="Кушетка Pause" loading="lazy">
+              </div>
+              <div class="catalog-card__head">
+                <h2 class="catalog-card__title">Кушетка Pause</h2>
+                <p class="catalog-card__price">135 000 ₽</p>
+              </div>
+              <p class="catalog-card__desc">кожа растительного дубления, дубовая рама</p>
+              <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </article>
+            <article class="catalog-card" data-product="skrive" data-category="bedroom">
+              <div class="catalog-card__image">
+                <img src="images/collection/item-21.jpg" alt="Письменный стол Skrive" loading="lazy">
+              </div>
+              <div class="catalog-card__head">
+                <h2 class="catalog-card__title">Письменный стол Skrive</h2>
+                <p class="catalog-card__price">96 000 ₽</p>
+              </div>
+              <p class="catalog-card__desc">массив светлого дуба, кожаный лоток для канцелярии</p>
+              <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </article>
+            <article class="catalog-card" data-product="arbejde" data-category="living">
+              <div class="catalog-card__image">
+                <img src="images/collection/item-22.jpg" alt="Рабочее кресло Arbejde" loading="lazy">
+              </div>
+              <div class="catalog-card__head">
+                <h2 class="catalog-card__title">Рабочее кресло Arbejde</h2>
+                <p class="catalog-card__price">64 000 ₽</p>
+              </div>
+              <p class="catalog-card__desc">массив ясеня, эргономичная спинка, шерсть</p>
+              <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </article>
+            <article class="catalog-card" data-product="kupe" data-category="lighting">
+              <div class="catalog-card__image">
+                <img src="images/collection/item-23.jpg" alt="Подвесной светильник Kupe" loading="lazy">
+              </div>
+              <div class="catalog-card__head">
+                <h2 class="catalog-card__title">Подвесной светильник Kupe</h2>
+                <p class="catalog-card__price">38 000 ₽</p>
+              </div>
+              <p class="catalog-card__desc">шлифованная латунь, матовое опаловое стекло</p>
+              <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </article>
+            <article class="catalog-card" data-product="dis" data-category="lighting">
+              <div class="catalog-card__image">
+                <img src="images/collection/item-24.jpg" alt="Настольная лампа Dis" loading="lazy">
+              </div>
+              <div class="catalog-card__head">
+                <h2 class="catalog-card__title">Настольная лампа Dis</h2>
+                <p class="catalog-card__price">32 000 ₽</p>
+              </div>
+              <p class="catalog-card__desc">серый травертин, выдувное молочное стекло</p>
+              <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </article>
+            <article class="catalog-card" data-product="rulle" data-category="kitchen">
+              <div class="catalog-card__image">
+                <img src="images/collection/item-25.jpg" alt="Сервировочный столик Rulle" loading="lazy">
+              </div>
+              <div class="catalog-card__head">
+                <h2 class="catalog-card__title">Сервировочный столик Rulle</h2>
+                <p class="catalog-card__price">46 000 ₽</p>
+              </div>
+              <p class="catalog-card__desc">светлый ясень, скрытые латунные колёса</p>
+              <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </article>
+            <article class="catalog-card" data-product="spejl" data-category="lighting">
+              <div class="catalog-card__image">
+                <img src="images/collection/item-26.jpg" alt="Зеркало Spejl" loading="lazy">
+              </div>
+              <div class="catalog-card__head">
+                <h2 class="catalog-card__title">Зеркало Spejl</h2>
+                <p class="catalog-card__price">42 000 ₽</p>
+              </div>
+              <p class="catalog-card__desc">обод из ореха ручной гибки, Ø80 см</p>
+              <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </article>
+            <article class="catalog-card" data-product="glas" data-category="living">
+              <div class="catalog-card__image">
+                <img src="images/collection/item-27.jpg" alt="Шкаф-витрина Glas" loading="lazy">
+              </div>
+              <div class="catalog-card__head">
+                <h2 class="catalog-card__title">Шкаф-витрина Glas</h2>
+                <p class="catalog-card__price">178 000 ₽</p>
+              </div>
+              <p class="catalog-card__desc">рамочные дубовые фасады, рифлёное стекло Flutes</p>
+              <button class="catalog-card__cart" type="button">В корзину <span aria-hidden="true">→</span></button>
+            </article>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- 5. Подвал -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid footer__grid--even">
+        <div class="footer__brand footer__brand--compact">
+          <a href="index.html" class="logo">ARKETIP</a>
+          <p class="footer__about">
+            Скандинавская авторская мебель и свет. Чистые линии, натуральные породы дерева
+            и тактильный текстиль.
+          </p>
+        </div>
+
+        <nav class="footer__nav" aria-label="Навигация в подвале">
+          <div class="footer__col">
+            <h4 class="footer__heading">Магазин</h4>
+            <ul class="footer__list">
+              <li><a href="collection.html">Коллекция</a></li>
+              <li><a href="living.html">Гостиная</a></li>
+              <li><a href="bedroom.html">Спальня</a></li>
+              <li><a href="kitchen.html">Кухня</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__heading">О бренде</h4>
+            <ul class="footer__list">
+              <li><a href="philosophy.html">Философия</a></li>
+              <li><a href="philosophy.html#materials">Материалы</a></li>
+              <li><a href="philosophy.html#workshop">Мастерская</a></li>
+              <li><a href="contacts.html">Контакты</a></li>
+              <li><a href="contacts.html#showroom">Шоурум</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__heading">Соцсети</h4>
+            <ul class="footer__list">
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">Pinterest</a></li>
+              <li><a href="#">Telegram</a></li>
+              <li><a href="mailto:hello@arketip.design">hello@arketip.design</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2025 ARKETIP Furniture Studio. Все права защищены.</p>
+        <ul class="footer__legal">
+          <li><a href="#">Конфиденциальность</a></li>
+          <li><a href="#">Условия сервиса</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/modern.js"></script>
+</body>
+</html>
