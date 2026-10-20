@@ -95,16 +95,6 @@ if (headerCartBtn && headerCartCount) {
   headerCartBtn.addEventListener('animationend', () => headerCartBtn.classList.remove('cart-btn--bump'));
 }
 
-/* ---------- Заголовки первого экрана: слова поднимаются по очереди ---------- */
-if (!prefersReducedMotion) {
-  document.querySelectorAll('.hero__title, .contacts__title').forEach((title) => {
-    title.setAttribute('aria-label', title.textContent.trim());
-    title.innerHTML = title.textContent.trim().split(/\s+/)
-      .map((word, i) => `<span class="split-word" aria-hidden="true"><span style="--i:${i}">${word}</span></span>`)
-      .join(' ');
-  });
-}
-
 /* ---------- Hero: лёгкий параллакс фотографии ---------- */
 const heroImage = document.querySelector('.hero__visual img');
 
@@ -118,7 +108,7 @@ const REVEAL_SELECTOR = [
   '.section-head', '.product-card', '.category', '.project', '.interior',
   '.philosophy__content', '.philosophy__visual', '.facts__item',
   '.catalog-card', '.feature', '.material', '.custom-order',
-  '.cart-item', '.summary', '.order-summary', '.footer__grid',
+  '.cart-item', '.summary', '.footer__grid',
   '.contacts__form-col', '.contacts__block', '.program',
 ].join(', ');
 
@@ -135,7 +125,7 @@ if ('IntersectionObserver' in window && !prefersReducedMotion) {
     // Соседние карточки в сетке появляются лесенкой
     const siblings = [...element.parentElement.children].filter((child) => child.matches(REVEAL_SELECTOR));
     const index = siblings.indexOf(element);
-    element.style.setProperty('--reveal-delay', `${(index % 3) * 0.1}s`);
+    element.style.setProperty('--reveal-delay', `${(index % 3) * 0.05}s`);
     element.classList.add('reveal');
     revealObserver.observe(element);
   };

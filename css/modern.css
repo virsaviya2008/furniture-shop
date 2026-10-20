@@ -36,7 +36,6 @@
 body {
   position: relative;
   background-color: #F1ECE4;
-  animation: page-in 0.7s var(--ease-out) both;
 }
 
 body::before {
@@ -52,11 +51,6 @@ body::before {
     radial-gradient(50vmax 50vmax at 30% 95%, rgba(196, 170, 135, 0.3), transparent 60%),
     radial-gradient(120vmax 90vmax at 50% 50%, transparent 55%, rgba(90, 70, 45, 0.14));
   animation: blobs-drift 28s ease-in-out infinite alternate;
-}
-
-@keyframes page-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
 
 @keyframes blobs-drift {
@@ -130,7 +124,6 @@ h4 {
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-pill);
   box-shadow: var(--shadow-md), var(--shadow-inset);
-  animation: header-drop 0.9s var(--ease-spring) backwards;
   transition: top 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out),
     background-color 0.4s var(--ease-out), transform 0.5s var(--ease-out);
 }
@@ -158,11 +151,6 @@ h4 {
 /* При прокрутке вниз шапка уезжает, вверх — возвращается */
 .header--hidden {
   transform: translateY(calc(-100% - 24px));
-}
-
-@keyframes header-drop {
-  from { opacity: 0; transform: translateY(-30px) scale(0.96); }
-  to { opacity: 1; transform: none; }
 }
 
 .logo {
@@ -441,6 +429,30 @@ h4 {
   border-top: 0;
 }
 
+@media (max-width: 768px) {
+  .filters {
+    flex-wrap: nowrap;
+    gap: 8px;
+    margin-inline: calc(-1 * var(--container-padding));
+    /* Запас снизу под тень активной кнопки, чтобы прокрутка её не обрезала */
+    margin-bottom: -16px;
+    padding: 24px var(--container-padding) 24px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-padding-inline: var(--container-padding);
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filters__btn {
+    flex-shrink: 0;
+  }
+}
+
 .filters__btn {
   padding: 11px 20px;
   font-size: 12px;
@@ -510,12 +522,6 @@ h4 {
 
 .hero__visual img {
   transform: scale(1.08);
-  animation: hero-zoom 1.6s var(--ease-out) backwards;
-}
-
-@keyframes hero-zoom {
-  from { transform: scale(1.2); filter: blur(6px); }
-  to { transform: scale(1.08); filter: blur(0); }
 }
 
 .cart-item__image,
@@ -588,7 +594,6 @@ h4 {
   bottom: 20px;
   padding: 12px 20px;
   background-color: var(--glass-bg);
-  animation: float-y 5s ease-in-out infinite;
 }
 
 @keyframes float-y {
@@ -793,36 +798,17 @@ h4 {
   transform: translateX(4px);
 }
 
-/* ---------- Появление при прокрутке ---------- */
+/* ---------- Появление при прокрутке (только блоки ниже первого экрана) ---------- */
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+  transform: translateY(16px);
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
   transition-delay: var(--reveal-delay, 0s);
 }
 
 .reveal--visible {
   opacity: 1;
   transform: none;
-}
-
-/* Заголовок hero — слова поднимаются по очереди */
-.split-word {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: top;
-  padding-bottom: 0.08em;
-}
-
-.split-word > span {
-  display: inline-block;
-  animation: word-up 1s var(--ease-out) both;
-  animation-delay: calc(0.25s + var(--i) * 0.08s);
-}
-
-@keyframes word-up {
-  from { transform: translateY(110%); }
-  to { transform: none; }
 }
 
 /* Полоса прогресса прокрутки */

@@ -3,7 +3,7 @@
    ========================================================================== */
 
 /* ---------- Корзина: каталог товаров ---------- */
-// room — раздел для хлебных крошек и рекомендаций, inStock: false — нет в наличии
+// room — раздел для хлебных крошек и рекомендаций, inStock: false — делаем под заказ (4–6 недель)
 const PRODUCTS = {
   vinkel: {
     category: 'Кресло', title: 'Кресло Vinkel', price: 76000, image: 'images/collection/item-1.jpg', room: 'living',
@@ -222,6 +222,19 @@ function pluralize(count, one, few, many) {
   return many;
 }
 
+/* ---------- Отправка заявок и заказов ---------- */
+const LEADS_URL = 'https://arketip-orders.virsaviavisnevskaa.workers.dev/';
+const SEND_ERROR_TEXT = 'Не получилось отправить, позвоните нам: +375296229157';
+
+async function sendLead(data) {
+  const response = await fetch(LEADS_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+}
+
 /* ---------- Корзина: счётчик в шапке ---------- */
 const cartBtn = document.querySelector('.cart-btn');
 const cartCount = document.querySelector('.cart-btn__count');
@@ -246,7 +259,6 @@ window.addEventListener('storage', (event) => {
 /* ---------- Корзина: кнопки «В корзину» ---------- */
 function addToCart(button) {
   const id = button.closest('[data-product]').dataset.product;
-  if (PRODUCTS[id].inStock === false) return;
   const cart = loadCart();
   const item = cart.find((entry) => entry.id === id);
   if (item) {
@@ -269,9 +281,8 @@ function addToCart(button) {
 /* ---------- Карточки товаров: переход на страницу товара и наличие ---------- */
 const productUrl = (id) => `product.html?id=${encodeURIComponent(id)}`;
 
-function setOutOfStock(button) {
-  button.disabled = true;
-  button.textContent = 'Нет в наличии';
+function setMadeToOrder(button) {
+  button.innerHTML = 'Под заказ <span aria-hidden="true">→</span>';
 }
 
 function initProductCard(card) {
@@ -292,12 +303,11 @@ function initProductCard(card) {
   });
 
   if (product.inStock === false) {
-    setOutOfStock(button);
+    setMadeToOrder(button);
     const sku = card.querySelector('.catalog-card__sku');
-    if (sku) sku.textContent = 'Ожидается';
-  } else {
-    button.addEventListener('click', () => addToCart(button));
+    if (sku) sku.textContent = 'Под заказ';
   }
+  button.addEventListener('click', () => addToCart(button));
 }
 
 document.querySelectorAll('.catalog-card[data-product], .product-card[data-product]').forEach(initProductCard);
@@ -383,141 +393,7 @@ if (cartList) {
   renderCartPage();
 }
 
-/* ---------- Оформление заказа ---------- */
-const checkoutForm = document.querySelector('[data-checkout-form]');
-const CRATE_PRICE = 4500;
-
-function getCheckoutTotals() {
-  const cart = loadCart();
-  const subtotal = cart.reduce((sum, item) => sum + PRODUCTS[item.id].price * item.qty, 0);
-  const isPickup = checkoutForm.elements.delivery.value === 'pickup';
-  const delivery = isPickup || subtotal >= FREE_DELIVERY_FROM ? 0 : DELIVERY_PRICE;
-  const crate = checkoutForm.elements.crate.checked ? CRATE_PRICE : 0;
-  return { cart, subtotal, delivery, crate, isPickup, total: subtotal + delivery + crate };
-}
-
-function createOrderItem({ id, qty }) {
-  const product = PRODUCTS[id];
-  const item = document.createElement('li');
-  item.className = 'order-item';
-  item.innerHTML = `
-    <div class="order-item__image">
-      <img src="${product.image}" alt="${product.title}">
-    </div>
-    <div class="order-item__body">
-      <div>
-        <div class="order-item__top">
-          <h3 class="order-item__title">${product.title}</h3>
-          <p class="order-item__price">${formatPrice(product.price * qty)}</p>
-        </div>
-        <p class="order-item__desc">${product.desc}</p>
-        <p class="order-item__qty">Количество: ${qty} шт.${qty > 1 ? ` (${formatPrice(product.price)} / шт.)` : ''}</p>
-      </div>
-      <p class="order-item__stock">В наличии на складе в СПб</p>
-    </div>`;
-  return item;
-}
-
-function renderCheckout() {
-  const { cart, subtotal, delivery, crate, isPickup, total } = getCheckoutTotals();
-  const positions = cart.length;
-
-  document.querySelector('[data-checkout-filled]').hidden = positions === 0;
-  document.querySelector('[data-checkout-empty]').hidden = positions > 0;
-  if (positions === 0) return;
-
-  document.querySelector('[data-order-count]').textContent =
-    `${positions} ${pluralize(positions, 'предмет', 'предмета', 'предметов')}`;
-  document.querySelector('[data-order-list]').replaceChildren(...cart.map(createOrderItem));
-  document.querySelector('[data-order-subtotal]').textContent = formatPrice(subtotal);
-
-  // Доставка: бесплатно при самовывозе или по акции от FREE_DELIVERY_FROM
-  const courierPrice = subtotal >= FREE_DELIVERY_FROM ? 0 : DELIVERY_PRICE;
-  document.querySelector('[data-delivery-price]').textContent = formatPrice(courierPrice);
-  document.querySelector('[data-order-delivery]').textContent = delivery === 0 ? 'Бесплатно' : formatPrice(delivery);
-  document.querySelector('[data-order-promo-badge]').hidden = isPickup || delivery > 0;
-  document.querySelector('[data-address]').hidden = isPickup;
-  checkoutForm.elements.street.required = !isPickup;
-
-  document.querySelector('[data-order-crate-row]').hidden = crate === 0;
-  document.querySelector('[data-order-total]').textContent = formatPrice(total);
-
-  const part = Math.ceil(total / 4);
-  document.querySelector('[data-split-amount]').textContent = `4 × ${formatPrice(part)}`;
-  document.querySelector('[data-split-hint]').textContent = `4 платежа по ${formatPrice(part)} каждые две недели без переплат`;
-  document.querySelector('[data-submit-label]').textContent =
-    checkoutForm.elements.payment.value === 'card' || checkoutForm.elements.payment.value === 'split'
-      ? `Подтвердить и оплатить ${formatPrice(total)}`
-      : `Подтвердить заказ на ${formatPrice(total)}`;
-}
-
-function showOrderDone(email) {
-  document.querySelector('[data-checkout-filled]').hidden = true;
-  document.querySelector('[data-checkout-done]').hidden = false;
-  document.querySelector('[data-order-number]').textContent = `AR-${Date.now().toString().slice(-6)}`;
-  document.querySelector('[data-order-email]').textContent = email;
-  document.querySelector('[data-checkout-step]').textContent = 'Шаг 3 из 3: подтверждение';
-
-  const current = document.querySelector('[data-step="checkout"]');
-  const done = document.querySelector('[data-step="done"]');
-  current.removeAttribute('aria-current');
-  done.classList.remove('breadcrumbs__upcoming');
-  done.setAttribute('aria-current', 'step');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-if (checkoutForm) {
-  const status = document.querySelector('[data-checkout-status]');
-
-  checkoutForm.addEventListener('change', renderCheckout);
-
-  // Фирменная сборка всегда включена — галочку нельзя снять
-  checkoutForm.elements.assembly.addEventListener('click', (event) => event.preventDefault());
-
-  checkoutForm.addEventListener('input', (event) => {
-    if (event.target.checkValidity()) {
-      event.target.classList.remove('checkout-field__input--invalid');
-    }
-  });
-
-  checkoutForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    const fields = [...checkoutForm.querySelectorAll('.checkout-field__input')]
-      .filter((field) => !field.closest('[hidden]'));
-    let firstInvalid = null;
-    fields.forEach((field) => {
-      const isValid = field.checkValidity();
-      field.classList.toggle('checkout-field__input--invalid', !isValid);
-      if (!isValid && !firstInvalid) firstInvalid = field;
-    });
-
-    if (firstInvalid) {
-      status.textContent = 'Пожалуйста, заполните обязательные поля, отмеченные звёздочкой.';
-      firstInvalid.focus();
-      return;
-    }
-
-    status.textContent = '';
-    const email = checkoutForm.elements.email.value;
-    saveCart([]);
-    showOrderDone(email);
-  });
-
-  document.querySelector('[data-promo]').addEventListener('submit', (event) => {
-    event.preventDefault();
-    const code = event.target.elements.promo.value.trim();
-    document.querySelector('[data-promo-status]').textContent = code
-      ? `Промокод «${code}» не найден. Проверьте написание или уточните у куратора.`
-      : 'Введите промокод или номер сертификата.';
-  });
-
-  window.addEventListener('storage', (event) => {
-    if (event.key === CART_KEY && document.querySelector('[data-checkout-done]').hidden) renderCheckout();
-  });
-
-  renderCheckout();
-}
+/* Оформление заказа — js/checkout.js */
 
 /* ---------- Коллекция: фильтр по категориям ---------- */
 const filterButtons = document.querySelectorAll('.filters__btn');
@@ -682,15 +558,12 @@ function renderProductPage() {
 
   const stock = document.querySelector('[data-product-stock]');
   stock.classList.toggle('product__stock--out', !inStock);
-  set('stock-text', inStock ? 'В наличии в шоуруме в Санкт-Петербурге' : 'Нет в наличии');
+  set('stock-text', inStock ? 'В наличии — привезём за 2–3 дня' : 'Под заказ — сделаем за 4–6 недель');
   document.querySelector('[data-product-notify]').hidden = inStock;
 
   const cartButton = document.querySelector('[data-product-cart]');
-  if (inStock) {
-    cartButton.addEventListener('click', () => addToCart(cartButton));
-  } else {
-    setOutOfStock(cartButton);
-  }
+  if (!inStock) setMadeToOrder(cartButton);
+  cartButton.addEventListener('click', () => addToCart(cartButton));
 
   set('related-title', inStock ? 'Вам может понравиться' : 'Похожие предметы в наличии');
   document.querySelector('[data-related-list]').replaceChildren(...getRelatedIds(id).map(createRelatedCard));
@@ -704,33 +577,66 @@ const requestForm = document.querySelector('.request-form');
 
 if (requestForm) {
   const status = requestForm.querySelector('.request-form__status');
+  const submit = requestForm.querySelector('.request-form__submit');
+  const submitHTML = submit.innerHTML;
 
-  requestForm.addEventListener('submit', (event) => {
+  requestForm.addEventListener('submit', async (event) => {
     event.preventDefault();
+    if (submit.disabled) return;
 
-    const fields = requestForm.querySelectorAll('.field__input');
+    const fields = requestForm.querySelectorAll('.field__input, .checkbox__input[required]');
     let firstInvalid = null;
     fields.forEach((field) => {
       const isValid = field.checkValidity();
-      field.classList.toggle('field__input--invalid', !isValid);
+      const invalidClass = field.type === 'checkbox' ? 'checkbox__input--invalid' : 'field__input--invalid';
+      field.classList.toggle(invalidClass, !isValid);
       if (!isValid && !firstInvalid) firstInvalid = field;
     });
 
     if (firstInvalid) {
-      status.textContent = 'Пожалуйста, заполните обязательные поля.';
+      status.textContent = firstInvalid.name === 'consent'
+        ? 'Подтвердите согласие на обработку персональных данных.'
+        : 'Пожалуйста, заполните обязательные поля.';
       firstInvalid.focus();
       return;
     }
 
-    status.textContent = 'Спасибо! Куратор свяжется с вами в течение рабочего дня.';
-    requestForm.reset();
-  });
+    const { elements } = requestForm;
+    const comment = [
+      elements.message.value.trim(),
+      `E-mail: ${elements.email.value.trim()}`,
+      elements.designer.checked ? 'Дизайнер интерьера / архитектор' : '',
+    ].filter(Boolean).join('\n');
 
-  requestForm.addEventListener('input', (event) => {
-    if (event.target.checkValidity()) {
-      event.target.classList.remove('field__input--invalid');
+    submit.disabled = true;
+    submit.textContent = 'Отправляем…';
+    status.textContent = '';
+
+    try {
+      await sendLead({
+        type: 'Заявка с сайта',
+        name: elements.name.value.trim(),
+        phone: elements.phone.value.trim(),
+        comment,
+        website: elements.website.value,
+      });
+      status.textContent = 'Спасибо! Куратор свяжется с вами в течение рабочего дня.';
+      requestForm.reset();
+    } catch {
+      status.textContent = SEND_ERROR_TEXT;
+    } finally {
+      submit.disabled = false;
+      submit.innerHTML = submitHTML;
     }
   });
+
+  const clearInvalid = (event) => {
+    if (event.target.checkValidity()) {
+      event.target.classList.remove('field__input--invalid', 'checkbox__input--invalid');
+    }
+  };
+  requestForm.addEventListener('input', clearInvalid);
+  requestForm.addEventListener('change', clearInvalid);
 }
 
 /* ---------- Контакты: масштаб карты ---------- */
